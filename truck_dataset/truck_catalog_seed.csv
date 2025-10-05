@@ -1,0 +1,39 @@
+brand,model,application,eu_vehicle_class,use_case,fuel_options,emission_standard,power_kw,transmission,cab_options,axle_configs,ad_body_options,primary_region
+Volvo Trucks,FH,Heavy tractor/rigid,N3,"Long-haul, regional",Diesel; Electric,Euro VI-e,330–540 kW,AT/AMT,Sleeper; High-sleeper; Globetrotter,4x2;6x2;6x4,Yes,EU
+Volvo Trucks,FM,Heavy distribution/rigid,N3,"Regional, distribution",Diesel; Electric,Euro VI-e,220–380 kW,AT/AMT,Day; Sleeper,4x2;6x2;6x4,Yes,EU
+Volvo Trucks,FMX,Construction,N3,"Tippers, mixers, heavy construction",Diesel; Electric,Euro VI-e,250–380 kW,AT/AMT,Day; Sleeper,4x2;6x4;8x4,Yes,EU
+Volvo Trucks,FH16,Heavy tractor,N3,Heavy haul,Diesel,Euro VI-e,420–550 kW,AT/AMT,Sleeper; High-sleeper,6x4;8x4,Yes,EU
+Scania,S-series,Heavy tractor,N3,Long-haul,Diesel; BEV (selected),Euro VI-e,270–500+ kW,AMT,High sleeper,4x2;6x2;6x4,Yes,EU
+Scania,R-series,Heavy tractor/rigid,N3,"Long-haul, regional",Diesel; BEV (selected),Euro VI-e,240–480 kW,AMT,Sleeper,4x2;6x2;6x4,Yes,EU
+Scania,G-series,Distribution/rigid,N3,"Regional, distribution",Diesel; BEV (selected),Euro VI-e,210–360 kW,AMT,Day; Sleeper,4x2;6x2;6x4,Yes,EU
+Mercedes-Benz,Actros,Heavy tractor,N3,Long-haul,Diesel; BEV (eActros 600),Euro VI-e,240–390+ kW,AT/AMT,Sleeper; StreamSpace; GigaSpace,4x2;6x2;6x4,Yes,EU
+Mercedes-Benz,Arocs,Construction,N3,"Tippers, mixers, heavy construction",Diesel,Euro VI-e,175–460 kW,AT/AMT,Day; Sleeper,4x2;6x4;8x4,Yes,EU
+Mercedes-Benz,Atego,Medium distribution,N2/N3,"Distribution, municipal",Diesel,Euro VI-e,125–220 kW,AT/AMT,Day; Crew,4x2,Yes,EU
+DAF,XF / XG / XG+,Heavy tractor,N3,Long-haul,Diesel,Euro VI-e,270–390 kW,AT/AMT,Sleeper; High roof,4x2;6x2;6x4,Yes,EU
+DAF,CF (legacy),Heavy rigid/tractor,N3,"Regional, construction",Diesel,Euro VI,210–370 kW,AT/AMT,Day; Sleeper,4x2;6x2;8x4,Yes,EU
+DAF,LF,Medium distribution,N2,Urban distribution,Diesel,Euro VI,110–210 kW,AT/AMT,Day; Sleeper,4x2,Yes,EU
+MAN,TGX,Heavy tractor,N3,Long-haul,Diesel,Euro VI-e,265–500+ kW,AMT,Sleeper; GX/GM cabs,4x2;6x2;6x4,Yes,EU
+MAN,TGS,Construction/regional,N3,"Regional, construction",Diesel,Euro VI-e,184–430 kW,AMT,Day; Sleeper,4x2;6x4;8x4,Yes,EU
+Iveco,S-Way,Heavy tractor,N3,Long-haul,Diesel; LNG,Euro VI-e,250–420 kW,AMT,Sleeper; High-roof,4x2;6x2;6x4,Yes,EU
+Iveco,X-Way,Construction/regional,N3,Construction logistics,Diesel,Euro VI-e,210–420 kW,AMT,Day; Sleeper,4x2;6x4;8x4,Yes,EU
+Iveco,Eurocargo,Medium rigid,N2/N3,"Distribution, municipal",Diesel; CNG,Euro VI,112–210 kW,AMT/MT,Day; Crew,4x2,Yes,EU
+Renault Trucks,T,Heavy tractor,N3,Long-haul,Diesel; BEV (limited),Euro VI-e,260–390 kW,AMT,Sleeper; High-roof,4x2;6x2;6x4,Yes,EU
+Renault Trucks,C,Construction,N3,Construction haulage,Diesel,Euro VI-e,210–390 kW,AMT,Day; Sleeper,6x4;8x4,Yes,EU
+Renault Trucks,D,Distribution,N2/N3,Urban/regional distribution,Diesel; Electric,Euro VI-e,140–250 kW,AMT/MT,Day; Crew,4x2,Yes,EU
+Isuzu,N-Series (Elf),Light/medium rigid,N1/N2,Urban distribution,Diesel; CNG; BEV,Euro VI / JP,90–140 kW,AT/AMT/MT,Day; Crew,4x2,Yes,Global
+Isuzu,F-Series (Forward),Medium rigid,N2/N3,Regional distribution,Diesel,Euro VI / JP,140–210 kW,AT/AMT/MT,Day; Sleeper,4x2;6x2,Yes,Global
+Hino,300 Series,Light rigid,N1/N2,Urban distribution,Diesel; Hybrid,Euro VI / JP,100–130 kW,AT/AMT/MT,Day; Crew,4x2,Yes,Global
+Hino,500 Series,Medium rigid,N2/N3,Regional distribution,Diesel,Euro VI / JP,150–260 kW,AMT/MT,Day; Sleeper,4x2;6x2,Yes,Global
+Hino,700 Series,Heavy tractor/rigid,N3,Heavy haul,Diesel,Euro VI / JP,280–410 kW,AMT,Day; Sleeper,6x4;8x4,Yes,Global
+Fuso,Canter,Light rigid,N1/N2,Urban distribution,Diesel; BEV (eCanter),Euro VI-e,80–130 kW,AT/AMT/MT,Day; Crew,4x2,Yes,Global
+Freightliner,Cascadia,Heavy tractor,N3 (Class 8),Long-haul,Diesel; BEV (eCascadia),EPA '21 / CARB,280–400+ kW,AMT/AT,Sleeper; Day,6x4,Yes,NA
+Volvo Trucks NA,VNL,Heavy tractor,N3 (Class 8),Long-haul,Diesel; BEV (VNR Electric for regional),EPA '21 / CARB,280–450+ kW,AMT,Sleeper; Day,6x4,Yes,NA
+Volvo Trucks NA,VNR,Regional tractor,N3 (Class 8),Regional distribution,Diesel; BEV,EPA '21 / CARB,240–380 kW,AMT,Day; Short sleeper,6x4,Yes,NA
+Kenworth,T680,Heavy tractor,N3 (Class 8),Long-haul,Diesel,EPA '21,300–450+ kW,AMT,Sleeper; Day,6x4,Yes,NA
+Kenworth,T880,Vocational,N3 (Class 8),"Construction, dump, mixer",Diesel,EPA '21,260–420+ kW,AMT,Day; Small sleeper,6x4;8x4,Yes,NA
+Peterbilt,579,Heavy tractor,N3 (Class 8),Long-haul,Diesel,EPA '21,300–450+ kW,AMT,Sleeper; Day,6x4,Yes,NA
+Peterbilt,389,Conventional tractor,N3 (Class 8),Long-haul/specialty,Diesel,EPA '21,300–450+ kW,MT/AMT,Sleeper; Day,6x4,Yes,NA
+International,LT Series,Heavy tractor,N3 (Class 8),Long-haul,Diesel,EPA '21,300–450+ kW,AMT,Sleeper; Day,6x4,Yes,NA
+International,HX Series,Vocational,N3 (Class 8),Construction,Diesel,EPA '21,260–420+ kW,AMT,Day,6x4;8x4,Yes,NA
+Mack,Anthem,Heavy tractor,N3 (Class 8),Long-haul,Diesel,EPA '21,300–430 kW,AMT,Sleeper; Day,6x4,Yes,NA
+Mack,Granite,Vocational,N3 (Class 8),Construction,Diesel,EPA '21,220–380 kW,AMT,Day,6x4;8x4,Yes,NA

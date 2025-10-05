@@ -1,0 +1,322 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Truck Marketplace API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/listings": {
+      "get": {
+        "summary": "Search truck listings",
+        "parameters": [
+          {
+            "name": "brand",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "variant",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "yearMin",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "yearMax",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "axle",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "6x4"
+            }
+          },
+          {
+            "name": "fuel",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emission",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "application",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priceMin",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "priceMax",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mileageMax",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "hasPTO",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "retarder",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "none",
+                "hydraulic",
+                "electric"
+              ]
+            }
+          },
+          {
+            "name": "adas",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "new",
+                "price_asc",
+                "price_desc",
+                "mileage",
+                "year"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TruckListing"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TruckListing": {
+        "type": "object",
+        "required": [
+          "id",
+          "brand",
+          "model",
+          "year",
+          "price",
+          "currency",
+          "mileage_km",
+          "specs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "variant": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string",
+            "example": "EUR"
+          },
+          "mileage_km": {
+            "type": "integer"
+          },
+          "photos": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "sellerType": {
+            "type": "string",
+            "enum": [
+              "dealer",
+              "private",
+              "fleet",
+              "auction"
+            ]
+          },
+          "specs": {
+            "$ref": "#/components/schemas/TruckSpecs"
+          },
+          "ownership": {
+            "$ref": "#/components/schemas/OwnershipHistory"
+          }
+        }
+      },
+      "TruckSpecs": {
+        "type": "object",
+        "properties": {
+          "application": {
+            "type": "string"
+          },
+          "bodyType": {
+            "type": "string"
+          },
+          "axleConfig": {
+            "type": "string"
+          },
+          "drive": {
+            "type": "string"
+          },
+          "cab": {
+            "type": "string"
+          },
+          "wheelbase_mm": {
+            "type": "integer"
+          },
+          "body_length_m": {
+            "type": "number"
+          },
+          "gvwr_kg": {
+            "type": "integer"
+          },
+          "fuel": {
+            "type": "string"
+          },
+          "emission": {
+            "type": "string"
+          },
+          "engine": {
+            "type": "string"
+          },
+          "power_kw": {
+            "type": "integer"
+          },
+          "transmission": {
+            "type": "string"
+          },
+          "front_suspension": {
+            "type": "string"
+          },
+          "rear_suspension": {
+            "type": "string"
+          },
+          "pto": {
+            "type": "string"
+          },
+          "retarder": {
+            "type": "string",
+            "enum": [
+              "none",
+              "hydraulic",
+              "electric"
+            ]
+          },
+          "adas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OwnershipHistory": {
+        "type": "object",
+        "properties": {
+          "owners": {
+            "type": "integer"
+          },
+          "serviceHistory": {
+            "type": "string"
+          },
+          "warranty": {
+            "type": "string"
+          },
+          "lastInspection": {
+            "type": "string",
+            "format": "date"
+          },
+          "nextInspection": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}
