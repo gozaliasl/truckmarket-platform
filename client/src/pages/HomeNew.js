@@ -96,17 +96,23 @@ function HomeNew() {
     try {
       const params = {
         category: selectedCategory,
-        ...filters
+        brand: filters.make,
+        model: filters.model,
+        minYear: filters.yearFrom,
+        maxYear: filters.yearTo,
+        maxMileage: filters.mileageTo,
+        maxPrice: filters.priceTo,
+        location: filters.location
       };
 
       // Remove empty filters
       Object.keys(params).forEach(key => {
-        if (params[key] === '' || params[key] === 'Any') {
+        if (params[key] === '' || params[key] === 'Any' || params[key] === undefined) {
           delete params[key];
         }
       });
 
-      const response = await axios.get('/api/trucks', { params });
+      const response = await axios.get('http://localhost:5001/api/trucks', { params });
       setVehicles(response.data.trucks || []);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
