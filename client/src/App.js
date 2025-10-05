@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Header from './components/Header';
-import Home from './pages/Home';
+import HomeNew from './pages/HomeNew';
 import TruckDetail from './pages/TruckDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -23,7 +23,7 @@ function App() {
         <div className="App">
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomeNew />} />
             <Route path="/truck/:id" element={<TruckDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
