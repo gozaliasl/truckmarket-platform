@@ -156,6 +156,7 @@ async function loginUser(email, password) {
               email: user.email,
               name: user.name,
               tier: user.tier,
+              role: user.role,
               subdomain: user.subdomain,
               company_name: user.company_name,
               listing_limit: user.listing_limit

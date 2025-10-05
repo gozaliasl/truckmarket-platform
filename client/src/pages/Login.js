@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/Logo';
 import './Login.css';
 
 function Login() {
@@ -59,6 +60,11 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
+        <div className="login-logo-container">
+          <Link to="/">
+            <Logo size="large" variant="full" />
+          </Link>
+        </div>
         <div className="login-header">
           <h1>Welcome Back</h1>
           <p>Sign in to your TruckMarket account</p>

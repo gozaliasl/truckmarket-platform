@@ -14,6 +14,7 @@ import MyListings from './pages/MyListings';
 import AddListing from './pages/AddListing';
 import EditListing from './pages/EditListing';
 import Subscription from './pages/Subscription';
+import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/my-listings" element={<MyListings />} />
             <Route path="/add-listing" element={<AddListing />} />
             <Route path="/edit-listing/:id" element={<EditListing />} />

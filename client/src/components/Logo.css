@@ -1,0 +1,86 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.02);
+}
+
+.logo-icon {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo-truck {
+  color: #2563eb;
+  font-family: 'Arial Black', 'Arial Bold', sans-serif;
+}
+
+.logo-market {
+  color: #1e293b;
+  font-family: 'Arial Black', 'Arial Bold', sans-serif;
+}
+
+/* Size variants */
+.logo-small .logo-text {
+  gap: 2px;
+}
+
+.logo-medium .logo-text {
+  gap: 3px;
+}
+
+.logo-large .logo-text {
+  gap: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-container {
+    gap: 8px;
+  }
+
+  .logo-text {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+}
+
+/* Animation for page load */
+@keyframes logoSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.logo-container {
+  animation: logoSlideIn 0.5s ease-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .logo-market {
+    color: #f1f5f9;
+  }
+}

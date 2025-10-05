@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Logo from './Logo';
 import './Header.css';
 
 function Header() {
@@ -10,12 +11,8 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="logo">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="8" fill="#2563eb"/>
-              <path d="M10 20h20M25 15l5 5-5 5M10 12h15M10 28h15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <span>TruckMarket</span>
+          <Link to="/" className="logo-link">
+            <Logo size="medium" variant="full" />
           </Link>
 
           <nav className="nav">
@@ -27,10 +24,15 @@ function Header() {
           <div className="header-actions">
             {isAuthenticated ? (
               <>
-                <Link to="/dashboard" className="btn btn-outline">Dashboard</Link>
+                {user?.role === 'admin' ? (
+                  <Link to="/admin" className="btn btn-admin">👑 Admin Panel</Link>
+                ) : (
+                  <Link to="/dashboard" className="btn btn-outline">Dashboard</Link>
+                )}
                 <Link to="/profile" className="user-info">
                   👤 {user?.name}
                   {user?.tier && <span className="tier-badge">{user.tier}</span>}
+                  {user?.role === 'admin' && <span className="tier-badge admin-badge">ADMIN</span>}
                 </Link>
                 <button onClick={logout} className="btn btn-secondary">Logout</button>
               </>

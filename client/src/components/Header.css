@@ -13,6 +13,11 @@
   padding: 15px 0;
 }
 
+.logo-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -77,6 +82,28 @@
   font-weight: 600;
   text-transform: uppercase;
   margin-left: 4px;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  animation: adminPulse 2s infinite;
+}
+
+@keyframes adminPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.btn-admin {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-admin:hover {
+  background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {

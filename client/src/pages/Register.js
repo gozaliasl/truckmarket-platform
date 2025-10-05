@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import Logo from '../components/Logo';
 import './Register.css';
 
 function Register() {
@@ -94,6 +95,11 @@ function Register() {
   return (
     <div className="register-page">
       <div className="register-container">
+        <div className="login-logo-container">
+          <Link to="/">
+            <Logo size="large" variant="full" />
+          </Link>
+        </div>
         <div className="register-header">
           <h1>Create Your Account</h1>
           <p>Choose a plan and start selling trucks today</p>

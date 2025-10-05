@@ -16,6 +16,16 @@
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
 
+.login-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.login-logo-container a {
+  text-decoration: none;
+}
+
 .login-header {
   text-align: center;
   margin-bottom: 30px;
