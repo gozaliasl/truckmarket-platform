@@ -65,6 +65,7 @@ function Dashboard() {
   };
 
   const getTierName = (tier) => {
+    if (!tier) return 'Free';
     return tier.charAt(0).toUpperCase() + tier.slice(1);
   };
 
@@ -74,6 +75,10 @@ function Dashboard() {
         <div className="loading">Loading dashboard...</div>
       </div>
     );
+  }
+
+  if (!user) {
+    return null;
   }
 
   return (

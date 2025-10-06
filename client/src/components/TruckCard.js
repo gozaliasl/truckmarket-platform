@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TruckCard.css';
 
-function TruckCard({ truck }) {
+function TruckCard({ truck, view = 'grid' }) {
   const formatPrice = (price, currency) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -16,7 +16,7 @@ function TruckCard({ truck }) {
   };
 
   return (
-    <Link to={`/truck/${truck.id}`} className="truck-card">
+    <Link to={`/truck/${truck.id}`} className={`truck-card truck-card-${view}`}>
       <div className="truck-card-image">
         <img src={truck.image_url} alt={truck.title} />
         <div className="truck-card-badge">{truck.condition}</div>

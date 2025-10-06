@@ -1,0 +1,45 @@
+.perpage-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.perpage-selector label {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.perpage-select {
+  padding: 8px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.perpage-select:hover {
+  border-color: #667eea;
+}
+
+.perpage-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+@media (max-width: 768px) {
+  .perpage-selector {
+    font-size: 13px;
+  }
+
+  .perpage-select {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}

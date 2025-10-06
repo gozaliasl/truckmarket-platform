@@ -1,0 +1,53 @@
+.view-toggle {
+  display: flex;
+  gap: 8px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.view-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.view-label {
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .view-label {
+    display: none;
+  }
+
+  .view-btn {
+    padding: 8px 10px;
+  }
+}

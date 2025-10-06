@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import FilterSidebar from '../components/FilterSidebar';
-import AdvancedFilters from '../components/AdvancedFilters';
 import TruckCard from '../components/TruckCard';
+import SortingControls from '../components/SortingControls';
+import ViewToggle from '../components/ViewToggle';
+import PerPageSelector from '../components/PerPageSelector';
 import './HomeNew.css';
 
 function HomeNew() {
@@ -22,14 +24,41 @@ function HomeNew() {
     location: ''
   });
 
+  // Sorting state
+  const [sortBy, setSortBy] = useState('created_at');
+  const [sortOrder, setSortOrder] = useState('DESC');
+  const [sortValue, setSortValue] = useState(() => {
+    return localStorage.getItem('truckmarket_sort') || 'created_at_desc';
+  });
 
+  // View state
+  const [view, setView] = useState(() => {
+    return localStorage.getItem('truckmarket_view') || 'grid';
+  });
+
+  // Pagination state
+  const [perPage, setPerPage] = useState(() => {
+    return parseInt(localStorage.getItem('truckmarket_perpage')) || 25;
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+
+  // Advanced Filters state
+  const [advancedFilters, setAdvancedFilters] = useState({});
+
+  // Hero search state
+  const [heroSearch, setHeroSearch] = useState('');
+
+  // Load initial sort from localStorage
   useEffect(() => {
-    if (selectedCategory) {
-      fetchVehicles();
-    }
-  }, [selectedCategory, filters]);
+    const savedSort = localStorage.getItem('truckmarket_sort') || 'created_at_desc';
+    const [field, order] = savedSort.split('_');
+    const orderUpper = order === 'desc' ? 'DESC' : 'ASC';
+    setSortBy(field === 'created' ? 'created_at' : field);
+    setSortOrder(orderUpper);
+  }, []);
 
-  const fetchVehicles = async () => {
+  const fetchVehicles = useCallback(async () => {
     setLoading(true);
     try {
       const params = {
@@ -40,7 +69,9 @@ function HomeNew() {
         maxYear: filters.yearTo,
         maxMileage: filters.mileageTo,
         maxPrice: filters.priceTo,
-        location: filters.location
+        location: filters.location,
+        sortBy: sortBy,
+        sortOrder: sortOrder
       };
 
       // Remove empty filters
@@ -51,14 +82,27 @@ function HomeNew() {
       });
 
       const response = await axios.get('http://localhost:5001/api/trucks', { params });
-      setVehicles(response.data.trucks || []);
+      const allVehicles = response.data.trucks || [];
+      setTotalResults(allVehicles.length);
+
+      // Apply client-side pagination
+      const startIndex = (currentPage - 1) * perPage;
+      const endIndex = startIndex + perPage;
+      setVehicles(allVehicles.slice(startIndex, endIndex));
     } catch (error) {
       console.error('Error fetching vehicles:', error);
       setVehicles([]);
+      setTotalResults(0);
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory, filters, sortBy, sortOrder, currentPage, perPage]);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      fetchVehicles();
+    }
+  }, [selectedCategory, filters, sortBy, sortOrder, currentPage, perPage, fetchVehicles]);
 
   const handleCategoryChange = (categoryId) => {
     setSelectedCategory(categoryId);
@@ -84,6 +128,46 @@ function HomeNew() {
     navigate(`/truck/${truckId}`);
   };
 
+  const handleSortChange = (newSortBy, newSortOrder) => {
+    setSortBy(newSortBy);
+    setSortOrder(newSortOrder);
+    setSortValue(`${newSortBy}_${newSortOrder.toLowerCase()}`);
+  };
+
+  const handleViewChange = (newView) => {
+    setView(newView);
+  };
+
+  const handlePerPageChange = (newPerPage) => {
+    setPerPage(newPerPage);
+    setCurrentPage(1); // Reset to first page when changing items per page
+  };
+
+  const handleHeroSearch = () => {
+    if (heroSearch.trim()) {
+      // Check if search term matches a brand
+      const brands = ['Volvo', 'MAN', 'Scania', 'DAF', 'Mercedes-Benz', 'Renault', 'Iveco', 'Freightliner', 'Kenworth', 'Peterbilt'];
+      const matchedBrand = brands.find(brand =>
+        brand.toLowerCase().includes(heroSearch.toLowerCase()) ||
+        heroSearch.toLowerCase().includes(brand.toLowerCase())
+      );
+
+      if (matchedBrand) {
+        handleFilterChange({ ...filters, make: matchedBrand, model: '' });
+      } else {
+        handleFilterChange({ ...filters, make: '', model: heroSearch });
+      }
+      handleCategoryChange('semi-trailer-trucks');
+    }
+  };
+
+  const totalPages = Math.ceil(totalResults / perPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="home-layout">
       {/* Left Sidebar with Filters */}
@@ -92,6 +176,8 @@ function HomeNew() {
         onFilterChange={handleFilterChange}
         selectedCategory={selectedCategory}
         onCategoryChange={handleCategoryChange}
+        advancedFilters={advancedFilters}
+        onAdvancedFilterChange={setAdvancedFilters}
       />
 
       {/* Main Content Area */}
@@ -100,26 +186,86 @@ function HomeNew() {
           // Welcome/Hero Section when no category selected
           <div className="welcome-section">
             <div className="welcome-hero">
-              <h1>Welcome to TruckMarket</h1>
-              <p>Find your perfect commercial vehicle from thousands of listings worldwide</p>
-              <div className="hero-stats">
-                <div className="stat-item">
-                  <div className="stat-number">2,031</div>
-                  <div className="stat-label">Active Listings</div>
+              <div className="hero-brand-images">
+                <img src="/images/brands/volvo.png" alt="Volvo" className="brand-img brand-1" />
+                <img src="/images/brands/man.png" alt="MAN" className="brand-img brand-2" />
+                <img src="/images/brands/scania.png" alt="Scania" className="brand-img brand-3" />
+                <img src="/images/brands/daf.png" alt="DAF" className="brand-img brand-4" />
+              </div>
+              <div className="hero-content">
+                <h1>Welcome to TruckMarket</h1>
+                <p>Find your perfect commercial vehicle from thousands of listings worldwide</p>
+
+                {/* Quick Search Bar */}
+                <div className="hero-search-bar">
+                  <input
+                    type="text"
+                    placeholder="Search by brand or model (e.g., DAF, Volvo, FH 540)..."
+                    className="hero-search-input"
+                    value={heroSearch}
+                    onChange={(e) => setHeroSearch(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        handleHeroSearch();
+                      }
+                    }}
+                  />
+                  <button
+                    className="hero-search-btn"
+                    onClick={handleHeroSearch}
+                  >
+                    🔍 Search
+                  </button>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-number">1,450+</div>
-                  <div className="stat-label">Verified Sellers</div>
+              </div>
+
+              <div className="hero-stats-horizontal">
+                <div className="stat-box">
+                  <div className="stat-icon">🔍</div>
+                  <div className="stat-content">
+                    <div className="stat-number">2,031</div>
+                    <div className="stat-label">Active Listings</div>
+                  </div>
                 </div>
-                <div className="stat-item">
-                  <div className="stat-number">45</div>
-                  <div className="stat-label">Countries</div>
+                <div className="stat-box">
+                  <div className="stat-icon">✅</div>
+                  <div className="stat-content">
+                    <div className="stat-number">1,450+</div>
+                    <div className="stat-label">Verified Sellers</div>
+                  </div>
+                </div>
+                <div className="stat-box">
+                  <div className="stat-icon">🌍</div>
+                  <div className="stat-content">
+                    <div className="stat-number">45</div>
+                    <div className="stat-label">Countries</div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="welcome-info">
+
+            {/* Popular Brands */}
+            <div className="popular-brands-section">
+              <h3>Popular Brands</h3>
+              <div className="brands-grid">
+                {['Volvo', 'MAN', 'Scania', 'DAF', 'Mercedes-Benz', 'Renault', 'Iveco', 'Freightliner'].map(brand => (
+                  <button
+                    key={brand}
+                    className="brand-btn"
+                    onClick={() => {
+                      handleFilterChange({ ...filters, make: brand });
+                      handleCategoryChange('semi-trailer-trucks');
+                    }}
+                  >
+                    {brand}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="categories-welcome-section">
               <h2>👈 Select a category to start browsing</h2>
-              <p>Choose from 9 vehicle categories including trucks, trailers, buses, construction machines, and more.</p>
+              <p className="categories-subtitle">Choose from 9 vehicle categories including trucks, trailers, buses, construction machines, and more.</p>
             </div>
           </div>
         ) : (
@@ -128,17 +274,24 @@ function HomeNew() {
             <div className="listings-header">
               <div className="header-title">
                 <h1>{selectedCategory.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h1>
-                <p className="listing-count">{loading ? 'Loading...' : `${vehicles.length} vehicles available`}</p>
+                <p className="listing-count">
+                  {loading ? 'Loading...' : `${totalResults} total | Showing ${vehicles.length} ads`}
+                </p>
               </div>
               <div className="header-actions">
-                <select className="sort-select">
-                  <option>Sort by: Recent</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Year: Newest</option>
-                  <option>Year: Oldest</option>
-                  <option>Mileage: Low to High</option>
-                </select>
+                <PerPageSelector
+                  perPage={perPage}
+                  onPerPageChange={handlePerPageChange}
+                />
+                <SortingControls
+                  sortValue={sortValue}
+                  onSortChange={handleSortChange}
+                  loading={loading}
+                />
+                <ViewToggle
+                  view={view}
+                  onViewChange={handleViewChange}
+                />
               </div>
             </div>
 
@@ -163,13 +316,59 @@ function HomeNew() {
                 </button>
               </div>
             ) : (
-              <div className="vehicles-list">
-                {vehicles.map(vehicle => (
-                  <div key={vehicle.id} onClick={() => handleTruckClick(vehicle.id)}>
-                    <TruckCard truck={vehicle} />
+              <>
+                <div className={`vehicles-list vehicles-${view}`}>
+                  {vehicles.map(vehicle => (
+                    <div key={vehicle.id} onClick={() => handleTruckClick(vehicle.id)}>
+                      <TruckCard truck={vehicle} view={view} />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="pagination-container">
+                    <button
+                      className="pagination-btn"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
+                      ← Previous
+                    </button>
+
+                    <div className="pagination-numbers">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1)
+                        .filter(page => {
+                          // Show first page, last page, current page, and pages around current
+                          if (page === 1 || page === totalPages) return true;
+                          if (Math.abs(page - currentPage) <= 1) return true;
+                          return false;
+                        })
+                        .map((page, index, array) => (
+                          <React.Fragment key={page}>
+                            {index > 0 && array[index - 1] !== page - 1 && (
+                              <span className="pagination-ellipsis">...</span>
+                            )}
+                            <button
+                              className={`pagination-number ${currentPage === page ? 'active' : ''}`}
+                              onClick={() => handlePageChange(page)}
+                            >
+                              {page}
+                            </button>
+                          </React.Fragment>
+                        ))}
+                    </div>
+
+                    <button
+                      className="pagination-btn"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
+                      Next →
+                    </button>
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )}
           </>
         )}
