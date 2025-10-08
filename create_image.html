@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Hero Image Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 247px; /* 1200 / 4.86 = 247px */
+            position: relative;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .road-scene {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: 
+                linear-gradient(90deg, #696969 0%, #696969 100%),
+                linear-gradient(90deg, #FFD700 0%, #FFD700 100%);
+            background-size: 100% 20%, 100% 2%;
+            background-position: center 70%, center 60%;
+            background-repeat: no-repeat;
+        }
+        
+        .road-lines {
+            position: absolute;
+            top: 60%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                #FFD700 0px,
+                #FFD700 30px,
+                transparent 30px,
+                transparent 60px
+            );
+        }
+        
+        .main-car {
+            position: absolute;
+            bottom: 25%;
+            left: 15%;
+            width: 120px;
+            height: 60px;
+            background: #FF6B6B;
+            border-radius: 20px 20px 5px 5px;
+            z-index: 10;
+        }
+        
+        .main-car::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            width: 100px;
+            height: 30px;
+            background: #87CEEB;
+            border-radius: 15px 15px 0 0;
+            border: 2px solid #4682B4;
+        }
+        
+        .main-car::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 40px 0 0 #FFD700, 60px 0 0 #FFD700;
+        }
+        
+        .couple {
+            position: absolute;
+            top: -25px;
+            left: 20px;
+            width: 80px;
+            height: 25px;
+        }
+        
+        .person {
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background: #FFB6C1;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .person:first-child {
+            left: 10px;
+        }
+        
+        .person:last-child {
+            left: 35px;
+        }
+        
+        .person::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 2px;
+            width: 11px;
+            height: 15px;
+            background: #4169E1;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .truck {
+            position: absolute;
+            bottom: 20%;
+            width: 140px;
+            height: 80px;
+            background: #4682B4;
+            border-radius: 10px;
+        }
+        
+        .truck:first-child {
+            left: 40%;
+        }
+        
+        .truck:last-child {
+            left: 70%;
+        }
+        
+        .truck::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            width: 100px;
+            height: 40px;
+            background: #87CEEB;
+            border-radius: 10px 10px 0 0;
+            border: 2px solid #4682B4;
+        }
+        
+        .truck::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 25px;
+            height: 25px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 50px 0 0 #FFD700, 80px 0 0 #FFD700;
+        }
+        
+        .road-logo-car {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 10px 10px 2px 2px;
+            z-index: 15;
+        }
+        
+        .road-logo-car::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 5px;
+            width: 30px;
+            height: 15px;
+            background: #87CEEB;
+            border-radius: 8px 8px 0 0;
+            border: 1px solid #4682B4;
+        }
+        
+        .road-logo-car::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            background: #FF6B6B;
+            border-radius: 50%;
+            box-shadow: 15px 0 0 #FF6B6B, 25px 0 0 #FF6B6B;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+        }
+        
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+        }
+        
+        .cloud1 {
+            top: 10%;
+            left: 20%;
+            width: 60px;
+            height: 20px;
+        }
+        
+        .cloud1::before {
+            top: -10px;
+            left: 10px;
+            width: 40px;
+            height: 20px;
+        }
+        
+        .cloud1::after {
+            top: -5px;
+            right: 10px;
+            width: 30px;
+            height: 15px;
+        }
+        
+        .cloud2 {
+            top: 15%;
+            left: 60%;
+            width: 80px;
+            height: 25px;
+        }
+        
+        .cloud2::before {
+            top: -12px;
+            left: 15px;
+            width: 50px;
+            height: 25px;
+        }
+        
+        .cloud2::after {
+            top: -8px;
+            right: 15px;
+            width: 35px;
+            height: 18px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .download-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Road Platform - Hero Image</h1>
+        
+        <div class="info">
+            <strong>Image Specifications:</strong><br>
+            • Aspect Ratio: 4.86:1 (as requested)<br>
+            • Resolution: 1200x247 pixels<br>
+            • Format: PNG (high quality)<br>
+            • Features: Happy couple in car, trucks behind, road scene
+        </div>
+        
+        <div class="image-container" id="heroImage">
+            <div class="road-scene">
+                <!-- Road lines -->
+                <div class="road-lines"></div>
+                
+                <!-- Clouds for atmosphere -->
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                
+                <!-- Main car with happy couple -->
+                <div class="main-car">
+                    <div class="couple">
+                        <div class="person"></div>
+                        <div class="person"></div>
+                    </div>
+                </div>
+                
+                <!-- Trucks behind -->
+                <div class="truck"></div>
+                <div class="truck"></div>
+                
+                <!-- Small auto icon for Road branding -->
+                <div class="road-logo-car"></div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadImage()">
+                📥 Download Hero Image
+            </button>
+        </div>
+        
+        <div class="info">
+            <strong>Instructions:</strong><br>
+            1. Click the "Download Hero Image" button above<br>
+            2. The image will be saved as "road-hero-image.png"<br>
+            3. The image maintains the 4.86:1 aspect ratio you requested<br>
+            4. Perfect for use as a website header or promotional material
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloadImage() {
+            const element = document.getElementById('heroImage');
+            
+            html2canvas(element, {
+                width: 1200,
+                height: 247,
+                scale: 2, // Higher quality
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null
+            }).then(canvas => {
+                // Create download link
+                const link = document.createElement('a');
+                link.download = 'road-hero-image.png';
+                link.href = canvas.toDataURL('image/png');
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success message
+                alert('Image downloaded successfully! Check your Downloads folder.');
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                alert('Error generating image. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
