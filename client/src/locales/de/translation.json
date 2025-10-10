@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Willkommen bei FahrzeugMarkt",
+    "search": "Suchen",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "profile": "Profil",
+    "dashboard": "Dashboard",
+    "logout": "Abmelden",
+    "loading": "Laden...",
+    "noResults": "Keine Ergebnisse gefunden",
+    "viewAll": "Alle anzeigen",
+    "learnMore": "Mehr erfahren",
+    "getStarted": "Jetzt starten",
+    "browse": "Durchsuchen",
+    "more": "Mehr"
+  },
+  "header": {
+    "home": "Startseite",
+    "trucks": "LKW",
+    "aboutUs": "Über uns",
+    "contact": "Kontakt",
+    "addListing": "Inserat hinzufügen",
+    "myListings": "Meine Inserate"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Wählen Sie Ihren Fahrzeugtyp",
+      "cars": "Autos",
+      "carsDesc": "Gebrauchte & Neue Autos",
+      "carsCount": "1,2M+ Inserate",
+      "motorcycles": "Motorräder",
+      "motorcyclesDesc": "Bikes & Roller",
+      "motorcyclesCount": "250K+ Inserate",
+      "ebikes": "E-Bikes",
+      "ebikesDesc": "Elektrofahrräder",
+      "ebikesCount": "80K+ Inserate",
+      "caravans": "Wohnmobile",
+      "caravansDesc": "Wohnmobile & Wohnwagen",
+      "caravansCount": "150K+ Inserate"
+    },
+    "commercialVehicles": {
+      "title": "Finden Sie Ihr Nutzfahrzeug",
+      "subtitle": "Nach Kategorie durchsuchen - Zum Erkunden klicken"
+    },
+    "popularCarBrands": {
+      "title": "Beliebte Automarken",
+      "subtitle": "Finden Sie Ihr Traumauto von führenden Herstellern weltweit",
+      "moreBrands": "Weitere Marken"
+    },
+    "hero": {
+      "tagline": "Fahrzeug kaufen, verkaufen, finanzieren oder leasen?",
+      "taglineSuffix": "Oder suchen Sie ein brandneues? FahrzeugMarkt!",
+      "description": "Entdecken Sie alles rund ums Fahrzeug auf FahrzeugMarkt und verschaffen Sie sich ganz einfach einen klaren Überblick über den gesamten Fahrzeugmarkt. Über 1,4 Millionen Fahrzeuge warten täglich auf Sie.",
+      "searchPlaceholder": "Nach Marke oder Modell suchen (z.B. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Aktive Inserate",
+      "sellers": "Verifizierte Verkäufer",
+      "countries": "Länder"
+    },
+    "popularBrands": "Beliebte Marken",
+    "marketplace": {
+      "title": "FahrzeugMarkt – Ihr kompletter Fahrzeugmarktplatz",
+      "buy": {
+        "title": "Fahrzeug kaufen?",
+        "description": "Durchstöbern Sie unser breites Angebot, vergleichen Sie und kontaktieren Sie Verkäufer direkt – ob professionelle Händler oder Privatverkäufer. Finden Sie Autos, Nutzfahrzeuge, Motorräder, E-Bikes und Wohnmobile mit Qualitätssiegeln und Garantien."
+      },
+      "sell": {
+        "title": "Fahrzeug verkaufen?",
+        "description": "Verkaufen Sie Ihr Fahrzeug hier kostenlos – schnell und bequem. Erreichen Sie Millionen potentieller Käufer zum bestmöglichen Preis. Erstellen Sie Ihr Inserat in Minuten und erhalten Sie noch heute Angebote."
+      },
+      "finance": {
+        "title": "Finanzierung & Leasing",
+        "description": "Ob Kauf oder Leasing, finden Sie was Sie suchen. Entdecken Sie passende Finanzierungsangebote und Leasingdeals von Händlern in Ihrer Nähe. Vergleichen Sie Monatsraten und sichern Sie sich das beste Angebot für Ihr Budget."
+      },
+      "tip": "Tipp:",
+      "tipDescription": "Mit einem Kundenkonto bleiben Sie immer auf dem neuesten Stand. Speichern Sie Ihre Suchen, greifen Sie von allen Geräten auf Ihre gespeicherten Fahrzeuge zu und erhalten Sie die neuesten Angebote passend zu Ihren Vorlieben."
+    },
+    "aiFeatures": {
+      "title": "KI-gestützte intelligente Funktionen",
+      "subtitle": "Erleben Sie die Zukunft des Fahrzeugkaufs mit unserem intelligenten KI-Assistenten",
+      "chatbot": {
+        "title": "KI-Chatbot-Assistent",
+        "description": "Chatten Sie mit unserer KI, um den perfekten LKW zu finden. Fragen Sie in einfacher Sprache!"
+      },
+      "smartSearch": {
+        "title": "Intelligente Suche",
+        "description": "Suchen Sie in natürlicher Sprache wie \"Mercedes Euro 6 geringe Laufleistung\""
+      },
+      "priceEstimation": {
+        "title": "KI-Preisschätzung",
+        "description": "Erhalten Sie sofortige KI-gestützte Preisanalysen und faire Marktwerte"
+      },
+      "marketInsights": {
+        "title": "Markteinblicke",
+        "description": "Sehen Sie Echtzeit-Markttrends und KI-gestützte Analysen"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Wie zufrieden sind Sie mit der Startseite?",
+      "veryDissatisfied": "Sehr unzufrieden",
+      "dissatisfied": "Unzufrieden",
+      "neutral": "Neutral",
+      "satisfied": "Zufrieden",
+      "verySatisfied": "Sehr zufrieden",
+      "thankYou": "Vielen Dank für Ihr Feedback! Ihre Meinung hilft uns, uns zu verbessern."
+    },
+    "languageSelect": "Sprache wählen:",
+    "followUs": "Folgen Sie uns",
+    "company": {
+      "title": "Unternehmen",
+      "aboutUs": "Über uns",
+      "newsroom": "Presseraum",
+      "careers": "Karriere",
+      "sustainability": "Nachhaltigkeit",
+      "advertising": "Werbung",
+      "contact": "Kontakt",
+      "accessibility": "Barrierefreiheitserklärung"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "imprint": "Impressum",
+      "terms": "Allgemeine Geschäftsbedingungen",
+      "privacy": "Datenschutzerklärung",
+      "privacySettings": "Datenschutzeinstellungen",
+      "security": "Sicherheitslücke melden"
+    },
+    "dealer": {
+      "title": "Händler",
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "ourOffer": "Unser Angebot",
+      "terms": "Geschäftsbedingungen"
+    },
+    "popular": {
+      "title": "Beliebt",
+      "ios": "FahrzeugMarkt iOS",
+      "android": "FahrzeugMarkt Android",
+      "sitemap": "Sitemap"
+    },
+    "copyright": "Alle Rechte vorbehalten."
+  }
+}

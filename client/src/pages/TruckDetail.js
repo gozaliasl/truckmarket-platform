@@ -16,6 +16,8 @@ function TruckDetail() {
     message: ''
   });
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [recommendations, setRecommendations] = useState([]);
+  const [recsLoading, setRecsLoading] = useState(false);
 
   useEffect(() => {
     fetchTruckDetail();
@@ -23,16 +25,49 @@ function TruckDetail() {
 
   const fetchTruckDetail = async () => {
     try {
-      const response = await axios.get(`/api/trucks/${id}`);
+      // Try to determine the vehicle type from the URL path
+      const path = window.location.pathname;
+      let apiEndpoint = `/api/trucks/${id}`;
+      
+      if (path.includes('/car/')) {
+        apiEndpoint = `/api/cars/${id}`;
+      } else if (path.includes('/motorcycle/')) {
+        apiEndpoint = `/api/motorcycles/${id}`;
+      } else if (path.includes('/ebike/')) {
+        apiEndpoint = `/api/ebikes/${id}`;
+      } else if (path.includes('/caravan/')) {
+        apiEndpoint = `/api/caravans/${id}`;
+      }
+      
+      const response = await axios.get(apiEndpoint);
       setTruck(response.data);
       setError(null);
     } catch (err) {
-      setError('Failed to load truck details');
-      console.error('Error fetching truck:', err);
+      setError('Failed to load vehicle details');
+      console.error('Error fetching vehicle:', err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        setRecsLoading(true);
+        const res = await axios.get(`/api/ai/recommendations/${id}?limit=6`);
+        setRecommendations(res.data?.recommendations || []);
+      } catch (e) {
+        // non-blocking: silently ignore rec errors
+        setRecommendations([]);
+      } finally {
+        setRecsLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchRecommendations();
+    }
+  }, [id]);
 
   const formatPrice = (price, currency) => {
     return new Intl.NumberFormat('en-US', {
@@ -150,6 +185,41 @@ function TruckDetail() {
               <div className="detail-description">
                 <h2>Description</h2>
                 <p>{truck.description}</p>
+              </div>
+
+              <div className="detail-recommendations">
+                <h2>Similar vehicles</h2>
+                {recsLoading ? (
+                  <div className="loading">Loading recommendations...</div>
+                ) : recommendations.length === 0 ? (
+                  <div className="muted">No similar vehicles found.</div>
+                ) : (
+                  <div className="recommendations-grid">
+                    {recommendations.map((rec) => (
+                      <Link key={rec.id} to={`/${(rec.category || 'truck').includes('car') ? 'car' : (rec.category || 'truck').includes('motorcycle') ? 'motorcycle' : (rec.category || '').includes('ebike') ? 'ebike' : (rec.category || '').includes('caravan') ? 'caravan' : 'truck'}/${rec.id}`} className="recommendation-card">
+                        <div className="rec-image">
+                          {rec.image_url ? (
+                            <img src={rec.image_url} alt={`${rec.brand} ${rec.model}`} />
+                          ) : (
+                            <div className="no-image">🚚</div>
+                          )}
+                          {rec.trending_badge && <div className={`badge badge-${rec.trending_badge}`}>{rec.trending_badge}</div>}
+                        </div>
+                        <div className="rec-content">
+                          <div className="rec-title">{rec.brand} {rec.model} {rec.year ? `(${rec.year})` : ''}</div>
+                          <div className="rec-meta">
+                            <span>{rec.mileage ? `${rec.mileage.toLocaleString()} km` : '—'}</span>
+                            <span>{rec.engine_power ? `${rec.engine_power} HP` : ''}</span>
+                          </div>
+                          <div className="rec-price">{formatPrice(rec.price, rec.currency)}</div>
+                          {rec.recommendation_reason && (
+                            <div className="rec-reason">{rec.recommendation_reason}</div>
+                          )}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

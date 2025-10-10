@@ -1,0 +1,51 @@
+{
+  "name": "truck-platform-server",
+  "version": "1.0.0",
+  "description": "AI-Powered Vehicle Marketplace Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "ai:test": "node test-ai-features.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "axios": "^1.6.0",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.2.1",
+    "file-type": "^21.0.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "natural": "^6.12.0",
+    "node-cache": "^5.1.2",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.34.4",
+    "speakeasy": "^2.0.0",
+    "sqlite3": "^5.1.6",
+    "validator": "^13.15.15"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "ai",
+    "vehicle",
+    "marketplace",
+    "truck",
+    "pricing",
+    "ml",
+    "nlp"
+  ],
+  "author": "Road Platform Team",
+  "license": "MIT"
+}

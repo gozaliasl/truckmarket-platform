@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "AraçPazarı'na Hoş Geldiniz",
+    "search": "Ara",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "profile": "Profil",
+    "dashboard": "Panel",
+    "logout": "Çıkış Yap",
+    "loading": "Yükleniyor...",
+    "noResults": "Sonuç bulunamadı",
+    "viewAll": "Tümünü Gör",
+    "learnMore": "Daha Fazla Bilgi",
+    "getStarted": "Başla",
+    "browse": "Gözat",
+    "more": "Daha Fazla"
+  },
+  "header": {
+    "home": "Ana Sayfa",
+    "trucks": "Kamyonlar",
+    "aboutUs": "Hakkımızda",
+    "contact": "İletişim",
+    "addListing": "İlan Ekle",
+    "myListings": "İlanlarım"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Araç Tipinizi Seçin",
+      "cars": "Otomobiller",
+      "carsDesc": "İkinci El ve Sıfır Otomobiller",
+      "carsCount": "1,2M+ İlan",
+      "motorcycles": "Motosikletler",
+      "motorcyclesDesc": "Motosikletler ve Scooter'lar",
+      "motorcyclesCount": "250K+ İlan",
+      "ebikes": "Elektrikli Bisikletler",
+      "ebikesDesc": "Elektrikli Bisikletler",
+      "ebikesCount": "80K+ İlan",
+      "caravans": "Karavanlar",
+      "caravansDesc": "Karavanlar",
+      "caravansCount": "150K+ İlan"
+    },
+    "commercialVehicles": {
+      "title": "Ticari Aracınızı Bulun",
+      "subtitle": "Kategoriye göre göz atın - Keşfetmek için tıklayın"
+    },
+    "popularCarBrands": {
+      "title": "Popüler Otomobil Markaları",
+      "subtitle": "Dünyanın önde gelen üreticilerinden hayalinizdeki arabayı bulun",
+      "moreBrands": "Daha Fazla Marka"
+    },
+    "hero": {
+      "tagline": "Araç satın alıyor, satıyor, finanse ediyor veya kiralıyor musunuz?",
+      "taglineSuffix": "Yoksa sıfır mı arıyorsunuz? AraçPazarı!",
+      "description": "AraçPazarı'nda araçlarla ilgili her şeyi keşfedin ve tüm otomotiv pazarının net bir özetini kolayca edinin. Her gün 1,4 milyondan fazla araç sizi bekliyor.",
+      "searchPlaceholder": "Marka veya modele göre ara (örn. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Aktif İlanlar",
+      "sellers": "Doğrulanmış Satıcılar",
+      "countries": "Ülke"
+    },
+    "popularBrands": "Popüler Markalar",
+    "marketplace": {
+      "title": "AraçPazarı – Eksiksiz Araç Pazarınız",
+      "buy": {
+        "title": "Araç satın almak mı istiyorsunuz?",
+        "description": "Geniş teklif yelpazemizi keşfedin, karşılaştırın ve satıcılarla doğrudan iletişime geçin – ister profesyonel bayiler ister özel satıcılar olsun. Kalite mühürleri ve garantileri olan otomobiller, ticari araçlar, motosikletler, elektrikli bisikletler ve karavanlar bulun."
+      },
+      "sell": {
+        "title": "Aracınızı satmak mı istiyorsunuz?",
+        "description": "Aracınızı burada ücretsiz satın – hızlı ve kolay. Mümkün olan en iyi fiyattan milyonlarca potansiyel alıcıya ulaşın. İlanınızı dakikalar içinde oluşturun ve bugün teklifler almaya başlayın."
+      },
+      "finance": {
+        "title": "Finansman ve Leasing Seçenekleri",
+        "description": "İster satın alın ister kiralayın, aradığınızı bulun. Yakınınızdaki bayilerden uygun finansman teklifleri ve leasing anlaşmaları keşfedin. Aylık taksitleri karşılaştırın ve bütçeniz için en iyi anlaşmayı alın."
+      },
+      "tip": "İpucu:",
+      "tipDescription": "Bir müşteri hesabıyla her zaman güncel kalırsınız. Aramalarınızı kaydedin, kaydedilmiş araçlarınıza tüm cihazlarınızdan erişin ve tercihlerinize uygun en son teklifleri alın."
+    },
+    "aiFeatures": {
+      "title": "Yapay Zeka Destekli Akıllı Özellikler",
+      "subtitle": "Akıllı yapay zeka asistanımızla araç alışverişinin geleceğini deneyimleyin",
+      "chatbot": {
+        "title": "Yapay Zeka Chatbot Asistanı",
+        "description": "Mükemmel kamyonu bulmak için yapay zekamızla sohbet edin. Sade dille sorun!"
+      },
+      "smartSearch": {
+        "title": "Akıllı Arama",
+        "description": "\"Mercedes Euro 6 düşük kilometre\" gibi doğal dil kullanarak arayın"
+      },
+      "priceEstimation": {
+        "title": "Yapay Zeka Fiyat Tahmini",
+        "description": "Anında yapay zeka destekli fiyat analizi ve adil piyasa değerleri alın"
+      },
+      "marketInsights": {
+        "title": "Pazar İçgörüleri",
+        "description": "Gerçek zamanlı pazar trendlerini ve yapay zeka destekli analizleri görüntüleyin"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Ana sayfadan ne kadar memnunsunuz?",
+      "veryDissatisfied": "Çok memnun değilim",
+      "dissatisfied": "Memnun değilim",
+      "neutral": "Nötr",
+      "satisfied": "Memnunum",
+      "verySatisfied": "Çok memnunum",
+      "thankYou": "Geri bildiriminiz için teşekkürler! Görüşünüz gelişmemize yardımcı oluyor."
+    },
+    "languageSelect": "Dil Seçin:",
+    "followUs": "Bizi Takip Edin",
+    "company": {
+      "title": "Şirket",
+      "aboutUs": "Hakkımızda",
+      "newsroom": "Basın Odası",
+      "careers": "Kariyer",
+      "sustainability": "Sürdürülebilirlik",
+      "advertising": "Reklam",
+      "contact": "İletişim",
+      "accessibility": "Erişilebilirlik Beyanı"
+    },
+    "legal": {
+      "title": "Yasal",
+      "imprint": "Künye",
+      "terms": "Genel Şartlar ve Koşullar",
+      "privacy": "Gizlilik Politikası",
+      "privacySettings": "Gizlilik Ayarları",
+      "security": "Güvenlik Açığı Bildir"
+    },
+    "dealer": {
+      "title": "Bayi",
+      "login": "Giriş Yap",
+      "register": "Kayıt Ol",
+      "ourOffer": "Teklifimiz",
+      "terms": "Şartlar ve Koşullar"
+    },
+    "popular": {
+      "title": "Popüler",
+      "ios": "AraçPazarı iOS",
+      "android": "AraçPazarı Android",
+      "sitemap": "Site Haritası"
+    },
+    "copyright": "Tüm hakları saklıdır."
+  }
+}

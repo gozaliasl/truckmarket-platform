@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Welkom bij VoertuigMarkt",
+    "search": "Zoeken",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "about": "Over",
+    "contact": "Contact",
+    "profile": "Profiel",
+    "dashboard": "Dashboard",
+    "logout": "Uitloggen",
+    "loading": "Laden...",
+    "noResults": "Geen resultaten gevonden",
+    "viewAll": "Alles bekijken",
+    "learnMore": "Meer informatie",
+    "getStarted": "Aan de slag",
+    "browse": "Bladeren",
+    "more": "Meer"
+  },
+  "header": {
+    "home": "Home",
+    "trucks": "Vrachtwagens",
+    "aboutUs": "Over ons",
+    "contact": "Contact",
+    "addListing": "Advertentie toevoegen",
+    "myListings": "Mijn advertenties"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Kies uw voertuigtype",
+      "cars": "Auto's",
+      "carsDesc": "Gebruikte & nieuwe auto's",
+      "carsCount": "1,2M+ advertenties",
+      "motorcycles": "Motoren",
+      "motorcyclesDesc": "Motoren & Scooters",
+      "motorcyclesCount": "250K+ advertenties",
+      "ebikes": "E-bikes",
+      "ebikesDesc": "Elektrische fietsen",
+      "ebikesCount": "80K+ advertenties",
+      "caravans": "Caravans",
+      "caravansDesc": "Campers",
+      "caravansCount": "150K+ advertenties"
+    },
+    "commercialVehicles": {
+      "title": "Vind uw bedrijfsvoertuig",
+      "subtitle": "Blader op categorie - Klik om te verkennen"
+    },
+    "popularCarBrands": {
+      "title": "Populaire automerken",
+      "subtitle": "Vind uw droomauto van topfabrikanten wereldwijd",
+      "moreBrands": "Meer merken"
+    },
+    "hero": {
+      "tagline": "Een voertuig kopen, verkopen, financieren of leasen?",
+      "taglineSuffix": "Of zoekt u een gloednieuwe? VoertuigMarkt!",
+      "description": "Ontdek alles over voertuigen op VoertuigMarkt en krijg eenvoudig een duidelijk overzicht van de hele automobielmarkt. Meer dan 1,4 miljoen voertuigen wachten elke dag op u.",
+      "searchPlaceholder": "Zoek op merk of model (bijv. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Actieve advertenties",
+      "sellers": "Geverifieerde verkopers",
+      "countries": "Landen"
+    },
+    "popularBrands": "Populaire merken",
+    "marketplace": {
+      "title": "VoertuigMarkt – Uw complete voertuigmarktplaats",
+      "buy": {
+        "title": "Op zoek naar een voertuig?",
+        "description": "Bekijk ons brede aanbod, vergelijk en neem direct contact op met verkopers, of het nu professionele dealers of particuliere verkopers zijn. Vind auto's, bedrijfsvoertuigen, motoren, e-bikes en caravans met kwaliteitszegels en garanties."
+      },
+      "sell": {
+        "title": "Uw voertuig verkopen?",
+        "description": "Verkoop uw voertuig hier gratis, snel en eenvoudig. Bereik miljoenen potentiële kopers tegen de best mogelijke prijs. Maak uw advertentie in enkele minuten en ontvang vandaag nog aanbiedingen."
+      },
+      "finance": {
+        "title": "Financiering & leasing opties",
+        "description": "Of u nu koopt of least, vind wat u zoekt. Ontdek geschikte financieringsaanbiedingen en leasingdeals van dealers bij u in de buurt. Vergelijk maandtermijnen en krijg de beste deal voor uw budget."
+      },
+      "tip": "Tip:",
+      "tipDescription": "Met een klantenaccount blijft u altijd op de hoogte. Bewaar uw zoekopdrachten, open uw opgeslagen voertuigen vanaf al uw apparaten en ontvang de nieuwste aanbiedingen die bij uw voorkeuren passen."
+    },
+    "aiFeatures": {
+      "title": "AI-aangedreven slimme functies",
+      "subtitle": "Ervaar de toekomst van voertuig shoppen met onze intelligente AI-assistent",
+      "chatbot": {
+        "title": "AI chatbot assistent",
+        "description": "Chat met onze AI om de perfecte vrachtwagen te vinden. Vraag in gewone taal!"
+      },
+      "smartSearch": {
+        "title": "Slim zoeken",
+        "description": "Zoek met natuurlijke taal zoals \"Mercedes Euro 6 lage kilometerstand\""
+      },
+      "priceEstimation": {
+        "title": "AI prijsschatting",
+        "description": "Krijg directe AI-aangedreven prijsanalyse en eerlijke marktwaarden"
+      },
+      "marketInsights": {
+        "title": "Marktinzichten",
+        "description": "Bekijk realtime markttrends en AI-aangedreven analyses"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Hoe tevreden bent u met de homepage?",
+      "veryDissatisfied": "Zeer ontevreden",
+      "dissatisfied": "Ontevreden",
+      "neutral": "Neutraal",
+      "satisfied": "Tevreden",
+      "verySatisfied": "Zeer tevreden",
+      "thankYou": "Bedankt voor uw feedback! Uw mening helpt ons te verbeteren."
+    },
+    "languageSelect": "Selecteer taal:",
+    "followUs": "Volg ons",
+    "company": {
+      "title": "Bedrijf",
+      "aboutUs": "Over ons",
+      "newsroom": "Nieuwsruimte",
+      "careers": "Carrières",
+      "sustainability": "Duurzaamheid",
+      "advertising": "Adverteren",
+      "contact": "Contact",
+      "accessibility": "Toegankelijkheidsverklaring"
+    },
+    "legal": {
+      "title": "Juridisch",
+      "imprint": "Colofon",
+      "terms": "Algemene voorwaarden",
+      "privacy": "Privacybeleid",
+      "privacySettings": "Privacy-instellingen",
+      "security": "Beveiligingsprobleem melden"
+    },
+    "dealer": {
+      "title": "Dealer",
+      "login": "Inloggen",
+      "register": "Registreren",
+      "ourOffer": "Ons aanbod",
+      "terms": "Voorwaarden"
+    },
+    "popular": {
+      "title": "Populair",
+      "ios": "VoertuigMarkt iOS",
+      "android": "VoertuigMarkt Android",
+      "sitemap": "Sitemap"
+    },
+    "copyright": "Alle rechten voorbehouden."
+  }
+}

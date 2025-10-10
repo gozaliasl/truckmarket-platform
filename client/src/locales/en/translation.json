@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Welcome to VehicleMarket",
+    "search": "Search",
+    "login": "Login",
+    "register": "Register",
+    "about": "About",
+    "contact": "Contact",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "browse": "Browse",
+    "more": "More"
+  },
+  "header": {
+    "home": "Home",
+    "trucks": "Trucks",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "addListing": "Add Listing",
+    "myListings": "My Listings"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Choose Your Vehicle Type",
+      "cars": "Cars",
+      "carsDesc": "Used & New Cars",
+      "carsCount": "1.2M+ Listings",
+      "motorcycles": "Motorcycles",
+      "motorcyclesDesc": "Bikes & Scooters",
+      "motorcyclesCount": "250K+ Listings",
+      "ebikes": "E-Bikes",
+      "ebikesDesc": "Electric Bicycles",
+      "ebikesCount": "80K+ Listings",
+      "caravans": "Caravans",
+      "caravansDesc": "Motorhomes & RVs",
+      "caravansCount": "150K+ Listings"
+    },
+    "commercialVehicles": {
+      "title": "Find Your Commercial Vehicle",
+      "subtitle": "Browse by category - Click to explore"
+    },
+    "popularCarBrands": {
+      "title": "Popular Car Brands",
+      "subtitle": "Find your dream car from top manufacturers worldwide",
+      "moreBrands": "More Brands"
+    },
+    "hero": {
+      "tagline": "Buying, selling, financing or leasing a vehicle?",
+      "taglineSuffix": "Or looking for a brand-new one? VehicleMarket!",
+      "description": "Discover everything related to vehicles on VehicleMarket and easily get a clear overview of the entire automotive market. Over 1.4 million vehicles are waiting for you every day.",
+      "searchPlaceholder": "Search by brand or model (e.g., DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Active Listings",
+      "sellers": "Verified Sellers",
+      "countries": "Countries"
+    },
+    "popularBrands": "Popular Brands",
+    "marketplace": {
+      "title": "VehicleMarket – Your Complete Vehicle Marketplace",
+      "buy": {
+        "title": "Looking to Buy a Vehicle?",
+        "description": "Explore our wide range of offers, compare them, and contact sellers directly – whether professional dealers or private sellers. Find cars, commercial vehicles, motorcycles, e-bikes, and caravans with quality seals and warranties."
+      },
+      "sell": {
+        "title": "Looking to Sell Your Vehicle?",
+        "description": "Sell your vehicle here free of charge – quickly and conveniently. Reach millions of potential buyers at the best possible price. Create your listing in minutes and start receiving offers today."
+      },
+      "finance": {
+        "title": "Financing & Leasing Options",
+        "description": "Whether buying or leasing, find what you're looking for. Discover suitable financing offers and leasing deals from dealers near you. Compare monthly instalments and get the best deal for your budget."
+      },
+      "tip": "Tip:",
+      "tipDescription": "With a customer account, you'll always stay up to date. Save your searches, access your saved vehicles from all your devices, and receive the latest offers matching your preferences."
+    },
+    "aiFeatures": {
+      "title": "AI-Powered Smart Features",
+      "subtitle": "Experience the future of vehicle shopping with our intelligent AI assistant",
+      "chatbot": {
+        "title": "AI Chatbot Assistant",
+        "description": "Chat with our AI to find the perfect truck. Ask in plain language!"
+      },
+      "smartSearch": {
+        "title": "Smart Search",
+        "description": "Search using natural language like \"Mercedes Euro 6 low mileage\""
+      },
+      "priceEstimation": {
+        "title": "AI Price Estimation",
+        "description": "Get instant AI-powered price analysis and fair market values"
+      },
+      "marketInsights": {
+        "title": "Market Insights",
+        "description": "View real-time market trends and analytics powered by AI"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "How satisfied are you with the homepage?",
+      "veryDissatisfied": "Very Dissatisfied",
+      "dissatisfied": "Dissatisfied",
+      "neutral": "Neutral",
+      "satisfied": "Satisfied",
+      "verySatisfied": "Very Satisfied",
+      "thankYou": "Thank you for your feedback! Your opinion helps us improve."
+    },
+    "languageSelect": "Select Language:",
+    "followUs": "Follow Us",
+    "company": {
+      "title": "Company",
+      "aboutUs": "About us",
+      "newsroom": "Newsroom",
+      "careers": "Careers",
+      "sustainability": "Sustainability",
+      "advertising": "Advertising",
+      "contact": "Contact",
+      "accessibility": "Accessibility Statement"
+    },
+    "legal": {
+      "title": "Legal",
+      "imprint": "Imprint",
+      "terms": "General Terms and Conditions",
+      "privacy": "Privacy Policy",
+      "privacySettings": "Privacy Settings",
+      "security": "Report Security Vulnerability"
+    },
+    "dealer": {
+      "title": "Dealer",
+      "login": "Login",
+      "register": "Register",
+      "ourOffer": "Our Offer",
+      "terms": "Terms and Conditions"
+    },
+    "popular": {
+      "title": "Popular",
+      "ios": "VehicleMarket iOS",
+      "android": "VehicleMarket Android",
+      "sitemap": "Sitemap"
+    },
+    "copyright": "All rights reserved."
+  }
+}

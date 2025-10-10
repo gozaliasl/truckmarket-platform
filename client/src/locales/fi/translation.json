@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Tervetuloa AjoneuvoMarkkinat-palveluun",
+    "search": "Hae",
+    "login": "Kirjaudu sisään",
+    "register": "Rekisteröidy",
+    "about": "Tietoa meistä",
+    "contact": "Ota yhteyttä",
+    "profile": "Profiili",
+    "dashboard": "Hallintapaneeli",
+    "logout": "Kirjaudu ulos",
+    "loading": "Ladataan...",
+    "noResults": "Tuloksia ei löytynyt",
+    "viewAll": "Näytä kaikki",
+    "learnMore": "Lue lisää",
+    "getStarted": "Aloita",
+    "browse": "Selaa",
+    "more": "Lisää"
+  },
+  "header": {
+    "home": "Etusivu",
+    "trucks": "Kuorma-autot",
+    "aboutUs": "Tietoa meistä",
+    "contact": "Ota yhteyttä",
+    "addListing": "Lisää ilmoitus",
+    "myListings": "Omat ilmoitukseni"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Valitse ajoneuvotyyppisi",
+      "cars": "Autot",
+      "carsDesc": "Käytetyt ja uudet autot",
+      "carsCount": "1,2M+ ilmoitusta",
+      "motorcycles": "Moottoripyörät",
+      "motorcyclesDesc": "Moottoripyörät ja skooterit",
+      "motorcyclesCount": "250K+ ilmoitusta",
+      "ebikes": "Sähköpyörät",
+      "ebikesDesc": "Sähköiset polkupyörät",
+      "ebikesCount": "80K+ ilmoitusta",
+      "caravans": "Asuntovaunut",
+      "caravansDesc": "Matkailuautot",
+      "caravansCount": "150K+ ilmoitusta"
+    },
+    "commercialVehicles": {
+      "title": "Löydä hyötyajoneuvosi",
+      "subtitle": "Selaa kategorioittain - Klikkaa tutkiaksesi"
+    },
+    "popularCarBrands": {
+      "title": "Suositut automerkit",
+      "subtitle": "Löydä unelmiesi auto maailman johtavilta valmistajilta",
+      "moreBrands": "Lisää merkkejä"
+    },
+    "hero": {
+      "tagline": "Ostatko, myyt, rahoitat tai leasingaat ajoneuvoa?",
+      "taglineSuffix": "Vai etsit upouutta? AjoneuvoMarkkinat!",
+      "description": "Tutustu kaikkeen ajoneuvoihin liittyvään AjoneuvoMarkkinat-palvelussa ja saat helposti selkeän yleiskuvan koko automarkkinoista. Yli 1,4 miljoonaa ajoneuvoa odottaa sinua joka päivä.",
+      "searchPlaceholder": "Hae merkillä tai mallilla (esim. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Aktiiviset ilmoitukset",
+      "sellers": "Vahvistetut myyjät",
+      "countries": "Maat"
+    },
+    "popularBrands": "Suositut merkit",
+    "marketplace": {
+      "title": "AjoneuvoMarkkinat – Täydellinen ajoneuvomarkkinapaikkasi",
+      "buy": {
+        "title": "Haluatko ostaa ajoneuvon?",
+        "description": "Tutustu laajaan tarjontaamme, vertaa niitä ja ota yhteyttä myyjiin suoraan – olivatpa he ammattimaisia jälleenmyyjiä tai yksityisiä myyjiä. Löydä autoja, hyötyajoneuvoja, moottoripyöriä, sähköpyöriä ja asuntovaunuja laatumerkeillä ja takuilla."
+      },
+      "sell": {
+        "title": "Haluatko myydä ajoneuvosi?",
+        "description": "Myy ajoneuvosi täällä ilmaiseksi – nopeasti ja kätevästi. Tavoita miljoonia potentiaalisia ostajia parhaaseen mahdolliseen hintaan. Luo ilmoituksesi muutamassa minuutissa ja ala vastaanottaa tarjouksia jo tänään."
+      },
+      "finance": {
+        "title": "Rahoitus- ja leasingvaihtoehdot",
+        "description": "Ostat tai leasingaat, löydä mitä etsit. Tutustu sopiviin rahoitustarjouksiin ja leasingsopimuksiin jälleenmyyjiltä lähialueeltasi. Vertaa kuukausittaisia eriä ja hanki paras tarjous budjettiisi."
+      },
+      "tip": "Vinkki:",
+      "tipDescription": "Asiakastilin avulla pysyt aina ajan tasalla. Tallenna hakusi, käytä tallennettuja ajoneuvoja kaikilla laitteillasi ja vastaanota uusimmat mieltymyksiäsi vastaavat tarjoukset."
+    },
+    "aiFeatures": {
+      "title": "Tekoälyn toimivat älykkäät ominaisuudet",
+      "subtitle": "Koe ajoneuvojen ostamisen tulevaisuus älykkään tekoälyavustajamme kanssa",
+      "chatbot": {
+        "title": "Tekoäly-chatbot-avustaja",
+        "description": "Keskustele tekoälymme kanssa löytääksesi täydellisen kuorma-auton. Kysy tavallisella kielellä!"
+      },
+      "smartSearch": {
+        "title": "Älykäs haku",
+        "description": "Hae luonnollisella kielellä, kuten \"Mercedes Euro 6 pieni ajokilometrimäärä\""
+      },
+      "priceEstimation": {
+        "title": "Tekoälyn hinta-arvio",
+        "description": "Saat välittömästi tekoälyllä tehdyn hinta-analyysin ja oikeudenmukaisen markkina-arvon"
+      },
+      "marketInsights": {
+        "title": "Markkinaoivallukset",
+        "description": "Katso reaaliaikaisia markkinatrendejä ja tekoälyllä tehtyä analyysia"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Kuinka tyytyväinen olet etusivuun?",
+      "veryDissatisfied": "Erittäin tyytymätön",
+      "dissatisfied": "Tyytymätön",
+      "neutral": "Neutraali",
+      "satisfied": "Tyytyväinen",
+      "verySatisfied": "Erittäin tyytyväinen",
+      "thankYou": "Kiitos palautteestasi! Mielipiteesi auttaa meitä kehittymään."
+    },
+    "languageSelect": "Valitse kieli:",
+    "followUs": "Seuraa meitä",
+    "company": {
+      "title": "Yritys",
+      "aboutUs": "Tietoa meistä",
+      "newsroom": "Uutishuone",
+      "careers": "Ura",
+      "sustainability": "Kestävyys",
+      "advertising": "Mainonta",
+      "contact": "Ota yhteyttä",
+      "accessibility": "Saavutettavuusseloste"
+    },
+    "legal": {
+      "title": "Oikeudelliset",
+      "imprint": "Yhteystiedot",
+      "terms": "Yleiset käyttöehdot",
+      "privacy": "Tietosuojakäytäntö",
+      "privacySettings": "Tietosuoja-asetukset",
+      "security": "Ilmoita tietoturvahaavoittuvuudesta"
+    },
+    "dealer": {
+      "title": "Jälleenmyyjä",
+      "login": "Kirjaudu sisään",
+      "register": "Rekisteröidy",
+      "ourOffer": "Tarjouksemme",
+      "terms": "Käyttöehdot"
+    },
+    "popular": {
+      "title": "Suosittu",
+      "ios": "AjoneuvoMarkkinat iOS",
+      "android": "AjoneuvoMarkkinat Android",
+      "sitemap": "Sivukartta"
+    },
+    "copyright": "Kaikki oikeudet pidätetään."
+  }
+}

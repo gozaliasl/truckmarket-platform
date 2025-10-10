@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('./database');
+const mfaService = require('./services/mfaService');
 
 const JWT_SECRET = 'truckmarket-secret-key-change-in-production';
 const JWT_EXPIRES_IN = '7d';
@@ -129,7 +130,7 @@ async function registerUser(userData) {
 }
 
 // Login user
-async function loginUser(email, password) {
+async function loginUser(email, password, mfaToken = null) {
   return new Promise((resolve, reject) => {
     db.get('SELECT * FROM users WHERE email = ?', [email], async (err, user) => {
       if (err) return reject(err);
@@ -139,6 +140,48 @@ async function loginUser(email, password) {
       if (!isValid) return reject(new Error('Invalid credentials'));
 
       if (!user.is_active) return reject(new Error('Account is deactivated'));
+
+      // Check if MFA is enabled for this user
+      if (user.mfaEnabled) {
+        if (!mfaToken) {
+          // MFA is required but no token provided
+          resolve({
+            success: true,
+            requiresMFA: true,
+            message: 'MFA token required',
+            user: {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              tier: user.tier,
+              role: user.role,
+              subdomain: user.subdomain,
+              company_name: user.company_name,
+              listing_limit: user.listing_limit,
+              mfaEnabled: true
+            }
+          });
+          return;
+        }
+
+        // Verify MFA token
+        const isMFAValid = mfaService.verifyToken(user.mfaSecret, mfaToken);
+        if (!isMFAValid) {
+          reject(new Error('Invalid MFA token'));
+          return;
+        }
+
+        // Update MFA last used timestamp
+        db.run(
+          'UPDATE users SET mfaLastUsed = ? WHERE id = ?',
+          [new Date().toISOString(), user.id],
+          (err) => {
+            if (err) {
+              console.error('Failed to update MFA last used:', err);
+            }
+          }
+        );
+      }
 
       const token = generateToken(user.id);
 
@@ -159,7 +202,8 @@ async function loginUser(email, password) {
               role: user.role,
               subdomain: user.subdomain,
               company_name: user.company_name,
-              listing_limit: user.listing_limit
+              listing_limit: user.listing_limit,
+              mfaEnabled: user.mfaEnabled || false
             },
             token
           });

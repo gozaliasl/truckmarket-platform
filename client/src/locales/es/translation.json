@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Bienvenido a MercadoVehículos",
+    "search": "Buscar",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "profile": "Perfil",
+    "dashboard": "Panel",
+    "logout": "Cerrar sesión",
+    "loading": "Cargando...",
+    "noResults": "No se encontraron resultados",
+    "viewAll": "Ver todo",
+    "learnMore": "Más información",
+    "getStarted": "Comenzar",
+    "browse": "Explorar",
+    "more": "Más"
+  },
+  "header": {
+    "home": "Inicio",
+    "trucks": "Camiones",
+    "aboutUs": "Nosotros",
+    "contact": "Contacto",
+    "addListing": "Añadir anuncio",
+    "myListings": "Mis anuncios"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Elija su tipo de vehículo",
+      "cars": "Coches",
+      "carsDesc": "Coches usados y nuevos",
+      "carsCount": "1,2M+ anuncios",
+      "motorcycles": "Motocicletas",
+      "motorcyclesDesc": "Motos y Scooters",
+      "motorcyclesCount": "250K+ anuncios",
+      "ebikes": "Bicicletas eléctricas",
+      "ebikesDesc": "Bicicletas eléctricas",
+      "ebikesCount": "80K+ anuncios",
+      "caravans": "Caravanas",
+      "caravansDesc": "Autocaravanas",
+      "caravansCount": "150K+ anuncios"
+    },
+    "commercialVehicles": {
+      "title": "Encuentre su vehículo comercial",
+      "subtitle": "Explorar por categoría - Haga clic para explorar"
+    },
+    "popularCarBrands": {
+      "title": "Marcas de coches populares",
+      "subtitle": "Encuentre el coche de sus sueños de los principales fabricantes del mundo",
+      "moreBrands": "Más marcas"
+    },
+    "hero": {
+      "tagline": "¿Comprar, vender, financiar o arrendar un vehículo?",
+      "taglineSuffix": "¿O busca uno nuevo? ¡MercadoVehículos!",
+      "description": "Descubra todo lo relacionado con vehículos en MercadoVehículos y obtenga fácilmente una visión clara de todo el mercado automotriz. Más de 1,4 millones de vehículos le esperan cada día.",
+      "searchPlaceholder": "Buscar por marca o modelo (ej. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Anuncios activos",
+      "sellers": "Vendedores verificados",
+      "countries": "Países"
+    },
+    "popularBrands": "Marcas populares",
+    "marketplace": {
+      "title": "MercadoVehículos – Su mercado completo de vehículos",
+      "buy": {
+        "title": "¿Busca comprar un vehículo?",
+        "description": "Explore nuestra amplia gama de ofertas, compárelas y contacte directamente con los vendedores, ya sean concesionarios profesionales o vendedores privados. Encuentre coches, vehículos comerciales, motocicletas, bicicletas eléctricas y caravanas con sellos de calidad y garantías."
+      },
+      "sell": {
+        "title": "¿Busca vender su vehículo?",
+        "description": "Venda su vehículo aquí sin cargo, de forma rápida y conveniente. Llegue a millones de compradores potenciales al mejor precio posible. Cree su anuncio en minutos y comience a recibir ofertas hoy."
+      },
+      "finance": {
+        "title": "Opciones de financiación y arrendamiento",
+        "description": "Ya sea comprando o arrendando, encuentre lo que busca. Descubra ofertas de financiación adecuadas y ofertas de arrendamiento de concesionarios cercanos. Compare cuotas mensuales y obtenga la mejor oferta para su presupuesto."
+      },
+      "tip": "Consejo:",
+      "tipDescription": "Con una cuenta de cliente, siempre estará al día. Guarde sus búsquedas, acceda a sus vehículos guardados desde todos sus dispositivos y reciba las últimas ofertas que coincidan con sus preferencias."
+    },
+    "aiFeatures": {
+      "title": "Funciones inteligentes con IA",
+      "subtitle": "Experimente el futuro de la compra de vehículos con nuestro asistente inteligente de IA",
+      "chatbot": {
+        "title": "Asistente chatbot con IA",
+        "description": "Chatea con nuestra IA para encontrar el camión perfecto. ¡Pregunte en lenguaje sencillo!"
+      },
+      "smartSearch": {
+        "title": "Búsqueda inteligente",
+        "description": "Busque usando lenguaje natural como \"Mercedes Euro 6 bajo kilometraje\""
+      },
+      "priceEstimation": {
+        "title": "Estimación de precios con IA",
+        "description": "Obtenga análisis de precios instantáneos con IA y valores justos de mercado"
+      },
+      "marketInsights": {
+        "title": "Perspectivas del mercado",
+        "description": "Vea tendencias del mercado en tiempo real y análisis impulsados por IA"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "¿Qué tan satisfecho está con la página de inicio?",
+      "veryDissatisfied": "Muy insatisfecho",
+      "dissatisfied": "Insatisfecho",
+      "neutral": "Neutral",
+      "satisfied": "Satisfecho",
+      "verySatisfied": "Muy satisfecho",
+      "thankYou": "¡Gracias por sus comentarios! Su opinión nos ayuda a mejorar."
+    },
+    "languageSelect": "Seleccionar idioma:",
+    "followUs": "Síguenos",
+    "company": {
+      "title": "Empresa",
+      "aboutUs": "Sobre nosotros",
+      "newsroom": "Sala de prensa",
+      "careers": "Carreras",
+      "sustainability": "Sostenibilidad",
+      "advertising": "Publicidad",
+      "contact": "Contacto",
+      "accessibility": "Declaración de accesibilidad"
+    },
+    "legal": {
+      "title": "Legal",
+      "imprint": "Aviso legal",
+      "terms": "Términos y condiciones generales",
+      "privacy": "Política de privacidad",
+      "privacySettings": "Configuración de privacidad",
+      "security": "Reportar vulnerabilidad de seguridad"
+    },
+    "dealer": {
+      "title": "Concesionario",
+      "login": "Iniciar sesión",
+      "register": "Registrarse",
+      "ourOffer": "Nuestra oferta",
+      "terms": "Términos y condiciones"
+    },
+    "popular": {
+      "title": "Popular",
+      "ios": "MercadoVehículos iOS",
+      "android": "MercadoVehículos Android",
+      "sitemap": "Mapa del sitio"
+    },
+    "copyright": "Todos los derechos reservados."
+  }
+}

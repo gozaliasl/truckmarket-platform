@@ -67,7 +67,7 @@ function Login() {
         </div>
         <div className="login-header">
           <h1>Welcome Back</h1>
-          <p>Sign in to your TruckMarket account</p>
+          <p>Sign in to your Road account</p>
         </div>
 
         {error && <div className="error-message">{error}</div>}

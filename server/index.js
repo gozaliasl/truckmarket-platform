@@ -1,7 +1,24 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const db = require('./database');
+const simpleAIRoutes = require('./routes/simpleAIRoutes');
+const mfaRoutes = require('./routes/mfaRoutes');
+const fileUploadRoutes = require('./routes/fileUploadRoutes');
+const apiKeyRoutes = require('./routes/apiKeyRoutes');
+const securityRoutes = require('./routes/securityRoutes');
+const performanceRoutes = require('./routes/performanceRoutes');
+const advancedAIRoutes = require('./routes/advancedAIRoutes');
+const { 
+  cacheVehicles, 
+  cacheUser, 
+  cacheSearch, 
+  cacheAI,
+  invalidateVehicleCache,
+  invalidateUserCache
+} = require('./middleware/caching');
 const {
   registerUser,
   loginUser,
@@ -11,19 +28,144 @@ const {
   updateUserProfile,
   TIER_CONFIG
 } = require('./auth');
+const {
+  sanitizeInput,
+  validateUserRegistration,
+  validateUserLogin,
+  validateVehicleListing,
+  validateAIChat,
+  preventSQLInjection
+} = require('./middleware/validation');
+const {
+  rateLimitMonitor,
+  authMonitoring,
+  suspiciousActivityMonitor,
+  fileUploadMonitor,
+  errorMonitoring,
+  securityHeadersMonitor
+} = require('./middleware/securityMonitoring');
+const {
+  encryptSensitiveData,
+  decryptSensitiveData,
+  encryptUserData,
+  decryptUserData
+} = require('./middleware/databaseEncryption');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Security Headers Middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      scriptSrc: ["'self'"],
+      connectSrc: ["'self'"],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  }
+}));
+
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: {
+    error: 'Too many requests from this IP, please try again later.',
+    retryAfter: '15 minutes'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply rate limiting to all requests
+app.use(limiter);
+
+// Stricter rate limiting for auth endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 auth requests per windowMs
+  message: {
+    error: 'Too many authentication attempts, please try again later.',
+    retryAfter: '15 minutes'
+  },
+  skipSuccessfulRequests: true,
+});
+
+// CORS Configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://localhost:5001',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:3001',
+      'http://127.0.0.1:5001',
+      'https://yourdomain.com', // Replace with your production domain
+    ];
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
+// Security middleware
+app.use(sanitizeInput);
+app.use(preventSQLInjection);
+app.use(rateLimitMonitor);
+app.use(authMonitoring);
+app.use(suspiciousActivityMonitor);
+app.use(fileUploadMonitor);
+app.use(securityHeadersMonitor);
+
+// Additional Security Headers
+app.use((req, res, next) => {
+  // Prevent clickjacking
+  res.setHeader('X-Frame-Options', 'DENY');
+  
+  // Prevent MIME type sniffing
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  
+  // Enable XSS protection
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  // Referrer Policy
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Permissions Policy
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  
+  next();
+});
 
 // ============= AUTH ROUTES =============
 
 // Register user
-app.post('/api/auth/register', async (req, res) => {
+app.post('/api/auth/register', authLimiter, validateUserRegistration, encryptUserData, async (req, res) => {
   try {
     const result = await registerUser(req.body);
     res.json(result);
@@ -33,10 +175,10 @@ app.post('/api/auth/register', async (req, res) => {
 });
 
 // Login user
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', authLimiter, validateUserLogin, async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const result = await loginUser(email, password);
+    const { email, password, mfaToken } = req.body;
+    const result = await loginUser(email, password, mfaToken);
     res.json(result);
   } catch (error) {
     res.status(401).json({ error: error.message });
@@ -44,7 +186,7 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // Get current user
-app.get('/api/auth/me', authMiddleware, async (req, res) => {
+app.get('/api/auth/me', authMiddleware, decryptUserData, async (req, res) => {
   try {
     const user = await getUserById(req.user.id);
     res.json(user);
@@ -101,7 +243,7 @@ app.get('/api/dealers/:subdomain/trucks', (req, res) => {
 });
 
 // Get all trucks with filters
-app.get('/api/trucks', (req, res) => {
+app.get('/api/trucks', cacheVehicles, (req, res) => {
   const {
     brand,
     minPrice,
@@ -262,7 +404,7 @@ app.get('/api/trucks', (req, res) => {
 });
 
 // Get single truck by ID
-app.get('/api/trucks/:id', (req, res) => {
+app.get('/api/trucks/:id', cacheUser, (req, res) => {
   const { id } = req.params;
 
   db.get('SELECT * FROM trucks WHERE id = ?', [id], (err, row) => {
@@ -601,6 +743,254 @@ app.post('/api/ai/smart-search', (req, res) => {
   }
 });
 
+// ============================================
+// PHASE 2: SEARCH HISTORY & SAVED SEARCHES
+// ============================================
+const searchFeatures = require('./ai/searchFeatures');
+
+// Record search history
+app.post('/api/search-history', authMiddleware, async (req, res) => {
+  try {
+    const { search_query, filters, results_count, clicked_truck_id } = req.body;
+    const result = await searchFeatures.recordSearchHistory(
+      req.user.id,
+      search_query,
+      filters,
+      results_count,
+      clicked_truck_id
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to record search history' });
+  }
+});
+
+// Get search history
+app.get('/api/search-history', authMiddleware, async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 20;
+    const history = await searchFeatures.getSearchHistory(req.user.id, limit);
+    res.json({ history, count: history.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch search history' });
+  }
+});
+
+// Get popular searches
+app.get('/api/search-history/popular', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const popular = await searchFeatures.getPopularSearches(limit);
+    res.json({ popular_searches: popular, count: popular.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch popular searches' });
+  }
+});
+
+// Create saved search
+app.post('/api/saved-searches', authMiddleware, async (req, res) => {
+  try {
+    const { name, search_query, filters, notification_enabled } = req.body;
+    const result = await searchFeatures.createSavedSearch(
+      req.user.id,
+      name,
+      search_query,
+      filters,
+      notification_enabled
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create saved search' });
+  }
+});
+
+// Get saved searches
+app.get('/api/saved-searches', authMiddleware, async (req, res) => {
+  try {
+    const searches = await searchFeatures.getSavedSearches(req.user.id);
+    res.json({ saved_searches: searches, count: searches.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch saved searches' });
+  }
+});
+
+// Update saved search
+app.put('/api/saved-searches/:id', authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await searchFeatures.updateSavedSearch(req.user.id, id, req.body);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update saved search' });
+  }
+});
+
+// Delete saved search
+app.delete('/api/saved-searches/:id', authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await searchFeatures.deleteSavedSearch(req.user.id, id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete saved search' });
+  }
+});
+
+// Add to favorites
+app.post('/api/favorites', authMiddleware, async (req, res) => {
+  try {
+    const { truck_id, notes } = req.body;
+    const result = await searchFeatures.addFavorite(req.user.id, truck_id, notes);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add favorite' });
+  }
+});
+
+// Remove from favorites
+app.delete('/api/favorites/:truckId', authMiddleware, async (req, res) => {
+  try {
+    const { truckId } = req.params;
+    const result = await searchFeatures.removeFavorite(req.user.id, truckId);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to remove favorite' });
+  }
+});
+
+// Get favorites
+app.get('/api/favorites', authMiddleware, async (req, res) => {
+  try {
+    const favorites = await searchFeatures.getFavorites(req.user.id);
+    res.json({ favorites, count: favorites.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch favorites' });
+  }
+});
+
+// Check if truck is favorited
+app.get('/api/favorites/:truckId/status', authMiddleware, async (req, res) => {
+  try {
+    const { truckId } = req.params;
+    const isFavorited = await searchFeatures.isFavorited(req.user.id, truckId);
+    res.json({ is_favorited: isFavorited });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to check favorite status' });
+  }
+});
+
+// Get personalized recommendations
+app.get('/api/ai/personalized', authMiddleware, async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const recommendations = await searchFeatures.getPersonalizedRecommendations(req.user.id, limit);
+    res.json({ recommendations, count: recommendations.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch personalized recommendations' });
+  }
+});
+
+// ============================================
+// PHASE 3: CHATBOT ASSISTANT
+// ============================================
+const chatbot = require('./ai/chatbot');
+
+// Chatbot conversation endpoint
+app.post('/api/chatbot', async (req, res) => {
+  try {
+    const { message, context } = req.body;
+    const response = await chatbot.processMessage(message, context || {});
+    res.json(response);
+  } catch (error) {
+    console.error('Chatbot error:', error);
+    res.status(500).json({
+      message: "I'm having trouble processing that. Could you rephrase?",
+      error: true
+    });
+  }
+});
+
+// ============================================
+// PHASE 3 & 4: PRICE TRACKING & ANALYTICS
+// ============================================
+const priceAnalytics = require('./ai/priceAnalytics');
+
+// Create price alert
+app.post('/api/price-alerts', authMiddleware, async (req, res) => {
+  try {
+    const { truck_id, threshold_percent } = req.body;
+    const result = await priceAnalytics.createPriceAlert(req.user.id, truck_id, threshold_percent);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create price alert' });
+  }
+});
+
+// Get user's price alerts
+app.get('/api/price-alerts', authMiddleware, async (req, res) => {
+  try {
+    const alerts = await priceAnalytics.getPriceAlerts(req.user.id);
+    res.json({ alerts, count: alerts.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch price alerts' });
+  }
+});
+
+// Delete price alert
+app.delete('/api/price-alerts/:id', authMiddleware, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await priceAnalytics.deletePriceAlert(req.user.id, id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete price alert' });
+  }
+});
+
+// Get price history for a truck
+app.get('/api/trucks/:id/price-history', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const history = await priceAnalytics.getPriceHistory(id);
+    res.json({ price_history: history, count: history.length });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch price history' });
+  }
+});
+
+// Get market insights
+app.get('/api/ai/market-insights', async (req, res) => {
+  try {
+    const { category, brand } = req.query;
+    const insights = await priceAnalytics.getMarketInsights(category, brand);
+    res.json(insights);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch market insights' });
+  }
+});
+
+// Get price trends
+app.get('/api/ai/price-trends', async (req, res) => {
+  try {
+    const { category, days = 30 } = req.query;
+    const trends = await priceAnalytics.getPriceTrends(category, parseInt(days));
+    res.json(trends);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch price trends' });
+  }
+});
+
+// Predict best time to buy
+app.post('/api/ai/best-time-to-buy', async (req, res) => {
+  try {
+    const { truck_id, category, brand } = req.body;
+    const prediction = await priceAnalytics.predictBestTimeToBuy(truck_id, category, brand);
+    res.json(prediction);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to predict best time to buy' });
+  }
+});
+
 // ============= ADMIN ROUTES =============
 const { requireAdmin } = require('./middleware/adminAuth');
 
@@ -855,13 +1245,478 @@ app.delete('/api/admin/trucks/:id', requireAdmin, (req, res) => {
   });
 });
 
+// ============= CARS API ENDPOINTS =============
+
+// Get all cars with filters
+app.get('/api/cars', (req, res) => {
+  const {
+    brand,
+    model,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+    bodyType,
+    fuelType,
+    transmission,
+    maxMileage,
+    condition,
+    search,
+    sortBy = 'created_at',
+    sortOrder = 'DESC',
+    limit = 50,
+    offset = 0
+  } = req.query;
+
+  let query = 'SELECT * FROM cars WHERE 1=1';
+  const params = [];
+
+  if (brand) {
+    query += ' AND brand LIKE ?';
+    params.push(`%${brand}%`);
+  }
+
+  if (model) {
+    query += ' AND model LIKE ?';
+    params.push(`%${model}%`);
+  }
+
+  if (minPrice) {
+    query += ' AND price >= ?';
+    params.push(parseFloat(minPrice));
+  }
+
+  if (maxPrice) {
+    query += ' AND price <= ?';
+    params.push(parseFloat(maxPrice));
+  }
+
+  if (minYear) {
+    query += ' AND year >= ?';
+    params.push(parseInt(minYear));
+  }
+
+  if (maxYear) {
+    query += ' AND year <= ?';
+    params.push(parseInt(maxYear));
+  }
+
+  if (bodyType) {
+    query += ' AND body_type = ?';
+    params.push(bodyType);
+  }
+
+  if (fuelType) {
+    query += ' AND fuel_type = ?';
+    params.push(fuelType);
+  }
+
+  if (transmission) {
+    query += ' AND transmission = ?';
+    params.push(transmission);
+  }
+
+  if (maxMileage) {
+    query += ' AND mileage <= ?';
+    params.push(parseInt(maxMileage));
+  }
+
+  if (condition) {
+    query += ' AND condition = ?';
+    params.push(condition);
+  }
+
+  if (search) {
+    query += ' AND (brand LIKE ? OR model LIKE ? OR description LIKE ?)';
+    const searchPattern = `%${search}%`;
+    params.push(searchPattern, searchPattern, searchPattern);
+  }
+
+  // Add sorting
+  const allowedSortColumns = ['price', 'year', 'mileage', 'created_at'];
+  const sortColumn = allowedSortColumns.includes(sortBy) ? sortBy : 'created_at';
+  const order = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+  query += ` ORDER BY ${sortColumn} ${order}`;
+
+  // Add pagination
+  query += ' LIMIT ? OFFSET ?';
+  params.push(parseInt(limit), parseInt(offset));
+
+  db.all(query, params, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    // Get total count
+    let countQuery = 'SELECT COUNT(*) as total FROM cars WHERE 1=1';
+    const countParams = [];
+
+    if (brand) {
+      countQuery += ' AND brand LIKE ?';
+      countParams.push(`%${brand}%`);
+    }
+    if (model) {
+      countQuery += ' AND model LIKE ?';
+      countParams.push(`%${model}%`);
+    }
+    if (minPrice) {
+      countQuery += ' AND price >= ?';
+      countParams.push(parseFloat(minPrice));
+    }
+    if (maxPrice) {
+      countQuery += ' AND price <= ?';
+      countParams.push(parseFloat(maxPrice));
+    }
+    if (minYear) {
+      countQuery += ' AND year >= ?';
+      countParams.push(parseInt(minYear));
+    }
+    if (maxYear) {
+      countQuery += ' AND year <= ?';
+      countParams.push(parseInt(maxYear));
+    }
+    if (bodyType) {
+      countQuery += ' AND body_type = ?';
+      countParams.push(bodyType);
+    }
+    if (fuelType) {
+      countQuery += ' AND fuel_type = ?';
+      countParams.push(fuelType);
+    }
+    if (transmission) {
+      countQuery += ' AND transmission = ?';
+      countParams.push(transmission);
+    }
+    if (maxMileage) {
+      countQuery += ' AND mileage <= ?';
+      countParams.push(parseInt(maxMileage));
+    }
+    if (condition) {
+      countQuery += ' AND condition = ?';
+      countParams.push(condition);
+    }
+    if (search) {
+      countQuery += ' AND (brand LIKE ? OR model LIKE ? OR description LIKE ?)';
+      const searchPattern = `%${search}%`;
+      countParams.push(searchPattern, searchPattern, searchPattern);
+    }
+
+    db.get(countQuery, countParams, (err, countRow) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+
+      res.json({
+        cars: rows,
+        total: countRow.total,
+        limit: parseInt(limit),
+        offset: parseInt(offset)
+      });
+    });
+  });
+});
+
+// Get single car by ID
+app.get('/api/cars/:id', (req, res) => {
+  const { id } = req.params;
+
+  db.get('SELECT * FROM cars WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    if (!row) {
+      res.status(404).json({ error: 'Car not found' });
+      return;
+    }
+    res.json(row);
+  });
+});
+
+// ============= MOTORCYCLES API ENDPOINTS =============
+
+// Get all motorcycles with filters
+app.get('/api/motorcycles', (req, res) => {
+  const {
+    brand,
+    model,
+    type,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+    maxMileage,
+    condition,
+    sortBy = 'created_at',
+    sortOrder = 'DESC',
+    limit = 50,
+    offset = 0
+  } = req.query;
+
+  let query = 'SELECT * FROM motorcycles WHERE 1=1';
+  const params = [];
+
+  if (brand) {
+    query += ' AND brand LIKE ?';
+    params.push(`%${brand}%`);
+  }
+  if (model) {
+    query += ' AND model LIKE ?';
+    params.push(`%${model}%`);
+  }
+  if (type) {
+    query += ' AND type = ?';
+    params.push(type);
+  }
+  if (minPrice) {
+    query += ' AND price >= ?';
+    params.push(parseFloat(minPrice));
+  }
+  if (maxPrice) {
+    query += ' AND price <= ?';
+    params.push(parseFloat(maxPrice));
+  }
+  if (minYear) {
+    query += ' AND year >= ?';
+    params.push(parseInt(minYear));
+  }
+  if (maxYear) {
+    query += ' AND year <= ?';
+    params.push(parseInt(maxYear));
+  }
+  if (maxMileage) {
+    query += ' AND mileage <= ?';
+    params.push(parseInt(maxMileage));
+  }
+  if (condition) {
+    query += ' AND condition = ?';
+    params.push(condition);
+  }
+
+  const allowedSortColumns = ['price', 'year', 'mileage', 'created_at'];
+  const sortColumn = allowedSortColumns.includes(sortBy) ? sortBy : 'created_at';
+  const order = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+  query += ` ORDER BY ${sortColumn} ${order}`;
+  query += ' LIMIT ? OFFSET ?';
+  params.push(parseInt(limit), parseInt(offset));
+
+  db.all(query, params, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+
+    let countQuery = 'SELECT COUNT(*) as total FROM motorcycles WHERE 1=1';
+    const countParams = [];
+    if (brand) { countQuery += ' AND brand LIKE ?'; countParams.push(`%${brand}%`); }
+    if (model) { countQuery += ' AND model LIKE ?'; countParams.push(`%${model}%`); }
+    if (type) { countQuery += ' AND type = ?'; countParams.push(type); }
+    if (minPrice) { countQuery += ' AND price >= ?'; countParams.push(parseFloat(minPrice)); }
+    if (maxPrice) { countQuery += ' AND price <= ?'; countParams.push(parseFloat(maxPrice)); }
+    if (minYear) { countQuery += ' AND year >= ?'; countParams.push(parseInt(minYear)); }
+    if (maxYear) { countQuery += ' AND year <= ?'; countParams.push(parseInt(maxYear)); }
+    if (maxMileage) { countQuery += ' AND mileage <= ?'; countParams.push(parseInt(maxMileage)); }
+    if (condition) { countQuery += ' AND condition = ?'; countParams.push(condition); }
+
+    db.get(countQuery, countParams, (err, countRow) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ motorcycles: rows, total: countRow.total, limit: parseInt(limit), offset: parseInt(offset) });
+    });
+  });
+});
+
+// Get single motorcycle by ID
+app.get('/api/motorcycles/:id', (req, res) => {
+  db.get('SELECT * FROM motorcycles WHERE id = ?', [req.params.id], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ error: 'Motorcycle not found' });
+    res.json(row);
+  });
+});
+
+// ============= E-BIKES API ENDPOINTS =============
+
+// Get all e-bikes
+app.get('/api/ebikes', (req, res) => {
+  const {
+    brand,
+    type,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+    condition,
+    sortBy = 'created_at',
+    sortOrder = 'DESC',
+    limit = 50,
+    offset = 0
+  } = req.query;
+
+  let query = 'SELECT * FROM ebikes WHERE 1=1';
+  const params = [];
+
+  if (brand) { query += ' AND brand LIKE ?'; params.push(`%${brand}%`); }
+  if (type) { query += ' AND type = ?'; params.push(type); }
+  if (minPrice) { query += ' AND price >= ?'; params.push(parseFloat(minPrice)); }
+  if (maxPrice) { query += ' AND price <= ?'; params.push(parseFloat(maxPrice)); }
+  if (minYear) { query += ' AND year >= ?'; params.push(parseInt(minYear)); }
+  if (maxYear) { query += ' AND year <= ?'; params.push(parseInt(maxYear)); }
+  if (condition) { query += ' AND condition = ?'; params.push(condition); }
+
+  const allowedSortColumns = ['price', 'year', 'created_at'];
+  const sortColumn = allowedSortColumns.includes(sortBy) ? sortBy : 'created_at';
+  const order = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+  query += ` ORDER BY ${sortColumn} ${order} LIMIT ? OFFSET ?`;
+  params.push(parseInt(limit), parseInt(offset));
+
+  db.all(query, params, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    let countQuery = 'SELECT COUNT(*) as total FROM ebikes WHERE 1=1';
+    const countParams = [];
+    if (brand) { countQuery += ' AND brand LIKE ?'; countParams.push(`%${brand}%`); }
+    if (type) { countQuery += ' AND type = ?'; countParams.push(type); }
+    if (minPrice) { countQuery += ' AND price >= ?'; countParams.push(parseFloat(minPrice)); }
+    if (maxPrice) { countQuery += ' AND price <= ?'; countParams.push(parseFloat(maxPrice)); }
+    if (minYear) { countQuery += ' AND year >= ?'; countParams.push(parseInt(minYear)); }
+    if (maxYear) { countQuery += ' AND year <= ?'; countParams.push(parseInt(maxYear)); }
+    if (condition) { countQuery += ' AND condition = ?'; countParams.push(condition); }
+
+    db.get(countQuery, countParams, (err, countRow) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ ebikes: rows, total: countRow.total, limit: parseInt(limit), offset: parseInt(offset) });
+    });
+  });
+});
+
+// Get single e-bike by ID
+app.get('/api/ebikes/:id', (req, res) => {
+  db.get('SELECT * FROM ebikes WHERE id = ?', [req.params.id], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ error: 'E-Bike not found' });
+    res.json(row);
+  });
+});
+
+// ============= CARAVANS API ENDPOINTS =============
+
+// Get all caravans
+app.get('/api/caravans', (req, res) => {
+  const {
+    brand,
+    type,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+    condition,
+    sortBy = 'created_at',
+    sortOrder = 'DESC',
+    limit = 50,
+    offset = 0
+  } = req.query;
+
+  let query = 'SELECT * FROM caravans WHERE 1=1';
+  const params = [];
+
+  if (brand) { query += ' AND brand LIKE ?'; params.push(`%${brand}%`); }
+  if (type) { query += ' AND type = ?'; params.push(type); }
+  if (minPrice) { query += ' AND price >= ?'; params.push(parseFloat(minPrice)); }
+  if (maxPrice) { query += ' AND price <= ?'; params.push(parseFloat(maxPrice)); }
+  if (minYear) { query += ' AND year >= ?'; params.push(parseInt(minYear)); }
+  if (maxYear) { query += ' AND year <= ?'; params.push(parseInt(maxYear)); }
+  if (condition) { query += ' AND condition = ?'; params.push(condition); }
+
+  const allowedSortColumns = ['price', 'year', 'created_at'];
+  const sortColumn = allowedSortColumns.includes(sortBy) ? sortBy : 'created_at';
+  const order = sortOrder.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+  query += ` ORDER BY ${sortColumn} ${order} LIMIT ? OFFSET ?`;
+  params.push(parseInt(limit), parseInt(offset));
+
+  db.all(query, params, (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    let countQuery = 'SELECT COUNT(*) as total FROM caravans WHERE 1=1';
+    const countParams = [];
+    if (brand) { countQuery += ' AND brand LIKE ?'; countParams.push(`%${brand}%`); }
+    if (type) { countQuery += ' AND type = ?'; countParams.push(type); }
+    if (minPrice) { countQuery += ' AND price >= ?'; countParams.push(parseFloat(minPrice)); }
+    if (maxPrice) { countQuery += ' AND price <= ?'; countParams.push(parseFloat(maxPrice)); }
+    if (minYear) { countQuery += ' AND year >= ?'; countParams.push(parseInt(minYear)); }
+    if (maxYear) { countQuery += ' AND year <= ?'; countParams.push(parseInt(maxYear)); }
+    if (condition) { countQuery += ' AND condition = ?'; countParams.push(condition); }
+
+    db.get(countQuery, countParams, (err, countRow) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ caravans: rows, total: countRow.total, limit: parseInt(limit), offset: parseInt(offset) });
+    });
+  });
+});
+
+// Get single caravan by ID
+app.get('/api/caravans/:id', (req, res) => {
+  db.get('SELECT * FROM caravans WHERE id = ?', [req.params.id], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!row) return res.status(404).json({ error: 'Caravan not found' });
+    res.json(row);
+  });
+});
+
+// AI Routes - Advanced routes first to avoid conflicts
+app.use('/api/ai/advanced', cacheAI, advancedAIRoutes);
+app.use('/api/ai', validateAIChat, cacheAI, simpleAIRoutes);
+
+// MFA Routes
+app.use('/api/mfa', mfaRoutes);
+
+// File Upload Routes
+app.use('/api/upload', fileUploadRoutes);
+app.use('/api/files', fileUploadRoutes);
+
+// API Key Routes
+app.use('/api/api-keys', apiKeyRoutes);
+
+// Security Routes
+app.use('/api/security', securityRoutes);
+
+// Performance Routes
+app.use('/api/performance', performanceRoutes);
+
+// Advanced AI Routes - Already registered above
+
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Truck Platform API is running' });
+  res.json({ 
+    status: 'OK', 
+    message: 'Vehicle Platform API is running',
+    security: 'Enhanced security features enabled',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Error handling middleware (must be last)
+app.use(errorMonitoring);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ 
+    error: 'Endpoint not found',
+    message: 'The requested resource does not exist'
+  });
 });
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log('🔐 Enhanced Security Features:');
+  console.log('  - HTTPS enforcement and security headers');
+  console.log('  - Rate limiting and DDoS protection');
+  console.log('  - Input validation and sanitization');
+  console.log('  - SQL injection prevention');
+  console.log('  - XSS protection');
+  console.log('  - Security monitoring and logging');
   console.log('🤖 AI-Powered features enabled:');
   console.log('  - Smart recommendations');
   console.log('  - Price estimation');
@@ -869,4 +1724,5 @@ app.listen(PORT, () => {
   console.log('  - Natural language search');
   console.log('  - Trending vehicles');
   console.log('👑 Admin panel enabled at /admin');
+  console.log('Connected to SQLite database');
 });

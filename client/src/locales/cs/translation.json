@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Vítejte na TrhVozidel",
+    "search": "Hledat",
+    "login": "Přihlásit se",
+    "register": "Registrovat",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "profile": "Profil",
+    "dashboard": "Přehled",
+    "logout": "Odhlásit se",
+    "loading": "Načítání...",
+    "noResults": "Nebyly nalezeny žádné výsledky",
+    "viewAll": "Zobrazit vše",
+    "learnMore": "Dozvědět se více",
+    "getStarted": "Začít",
+    "browse": "Procházet",
+    "more": "Více"
+  },
+  "header": {
+    "home": "Domů",
+    "trucks": "Nákladní vozy",
+    "aboutUs": "O nás",
+    "contact": "Kontakt",
+    "addListing": "Přidat inzerát",
+    "myListings": "Moje inzeráty"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Vyberte typ vozidla",
+      "cars": "Auta",
+      "carsDesc": "Ojetá a nová auta",
+      "carsCount": "1,2M+ inzerátů",
+      "motorcycles": "Motocykly",
+      "motorcyclesDesc": "Motorky a skútry",
+      "motorcyclesCount": "250K+ inzerátů",
+      "ebikes": "Elektrokola",
+      "ebikesDesc": "Elektrická kola",
+      "ebikesCount": "80K+ inzerátů",
+      "caravans": "Karavany",
+      "caravansDesc": "Obytné vozy",
+      "caravansCount": "150K+ inzerátů"
+    },
+    "commercialVehicles": {
+      "title": "Najděte své užitkové vozidlo",
+      "subtitle": "Procházet podle kategorie - Klikněte pro prozkoumání"
+    },
+    "popularCarBrands": {
+      "title": "Populární automobilové značky",
+      "subtitle": "Najděte své vysněné auto od předních výrobců po celém světě",
+      "moreBrands": "Více značek"
+    },
+    "hero": {
+      "tagline": "Kupujete, prodáváte, financujete nebo leasingujete vozidlo?",
+      "taglineSuffix": "Nebo hledáte zcela nové? TrhVozidel!",
+      "description": "Objevte vše spojené s vozidly na TrhVozidel a snadno získejte jasný přehled o celém automobilovém trhu. Přes 1,4 milionu vozidel na vás čeká každý den.",
+      "searchPlaceholder": "Hledat podle značky nebo modelu (např. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Aktivní inzeráty",
+      "sellers": "Ověření prodejci",
+      "countries": "Země"
+    },
+    "popularBrands": "Populární značky",
+    "marketplace": {
+      "title": "TrhVozidel – Váš kompletní trh s vozidly",
+      "buy": {
+        "title": "Hledáte vozidlo k zakoupení?",
+        "description": "Prozkoumejte naši širokou škálu nabídek, porovnejte je a kontaktujte prodejce přímo – ať už profesionální dealery nebo soukromé prodejce. Najděte auta, užitková vozidla, motocykly, elektrokola a karavany s certifikáty kvality a zárukami."
+      },
+      "sell": {
+        "title": "Chcete prodat své vozidlo?",
+        "description": "Prodejte své vozidlo zde zdarma – rychle a pohodlně. Oslovte miliony potenciálních kupců za co nejlepší cenu. Vytvořte svůj inzerát během několika minut a začněte přijímat nabídky ještě dnes."
+      },
+      "finance": {
+        "title": "Možnosti financování a leasingu",
+        "description": "Ať už kupujete nebo leasingujete, najděte to, co hledáte. Objevte vhodné nabídky financování a leasingové nabídky od dealerů ve vašem okolí. Porovnejte měsíční splátky a získejte nejlepší nabídku pro váš rozpočet."
+      },
+      "tip": "Tip:",
+      "tipDescription": "Se zákaznickým účtem budete vždy v obraze. Ukládejte si vyhledávání, přistupujte k uloženým vozidlům ze všech vašich zařízení a přijímejte nejnovější nabídky odpovídající vašim preferencím."
+    },
+    "aiFeatures": {
+      "title": "Inteligentní funkce poháněné AI",
+      "subtitle": "Zažijte budoucnost nákupu vozidel s naším inteligentním AI asistentem",
+      "chatbot": {
+        "title": "AI chatbot asistent",
+        "description": "Chatujte s naší AI, abyste našli perfektní nákladní vůz. Ptejte se běžným jazykem!"
+      },
+      "smartSearch": {
+        "title": "Chytré vyhledávání",
+        "description": "Vyhledávejte pomocí přirozeného jazyka jako \"Mercedes Euro 6 malý nájezd\""
+      },
+      "priceEstimation": {
+        "title": "AI odhad ceny",
+        "description": "Získejte okamžitou AI analýzu ceny a férové tržní hodnoty"
+      },
+      "marketInsights": {
+        "title": "Tržní přehledy",
+        "description": "Sledujte tržní trendy v reálném čase a analýzy poháněné AI"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Jak jste spokojeni s hlavní stránkou?",
+      "veryDissatisfied": "Velmi nespokojený",
+      "dissatisfied": "Nespokojený",
+      "neutral": "Neutrální",
+      "satisfied": "Spokojený",
+      "verySatisfied": "Velmi spokojený",
+      "thankYou": "Děkujeme za vaši zpětnou vazbu! Váš názor nám pomáhá se zlepšovat."
+    },
+    "languageSelect": "Vyberte jazyk:",
+    "followUs": "Sledujte nás",
+    "company": {
+      "title": "Společnost",
+      "aboutUs": "O nás",
+      "newsroom": "Tiskové centrum",
+      "careers": "Kariéra",
+      "sustainability": "Udržitelnost",
+      "advertising": "Reklama",
+      "contact": "Kontakt",
+      "accessibility": "Prohlášení o přístupnosti"
+    },
+    "legal": {
+      "title": "Právní informace",
+      "imprint": "Tiráž",
+      "terms": "Všeobecné obchodní podmínky",
+      "privacy": "Zásady ochrany osobních údajů",
+      "privacySettings": "Nastavení soukromí",
+      "security": "Nahlásit bezpečnostní zranitelnost"
+    },
+    "dealer": {
+      "title": "Dealer",
+      "login": "Přihlásit se",
+      "register": "Registrovat",
+      "ourOffer": "Naše nabídka",
+      "terms": "Podmínky"
+    },
+    "popular": {
+      "title": "Populární",
+      "ios": "TrhVozidel iOS",
+      "android": "TrhVozidel Android",
+      "sitemap": "Mapa stránek"
+    },
+    "copyright": "Všechna práva vyhrazena."
+  }
+}

@@ -7,7 +7,7 @@ function About() {
     <div className="about-page">
       <div className="about-hero">
         <div className="container">
-          <h1>About TruckMarket</h1>
+          <h1>About RoadName</h1>
           <p>Europe's Leading Online Marketplace for Commercial Vehicles</p>
         </div>
       </div>
@@ -16,7 +16,7 @@ function About() {
         <section className="about-section">
           <h2>Our Mission</h2>
           <p>
-            TruckMarket is dedicated to connecting truck buyers and sellers across Europe and worldwide.
+            RoadName is dedicated to connecting vehicle buyers and sellers across Europe and worldwide.
             We provide a transparent, efficient, and trustworthy platform for trading commercial vehicles,
             making it easier than ever to buy or sell trucks, trailers, and heavy equipment.
           </p>
@@ -42,7 +42,7 @@ function About() {
         </section>
 
         <section className="about-section">
-          <h2>Why Choose TruckMarket?</h2>
+          <h2>Why Choose RoadName?</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">🌍</div>
@@ -83,7 +83,7 @@ function About() {
           <h2>Join Our Growing Community</h2>
           <p>
             Whether you're an individual seller, a professional dealer, or a fleet manager,
-            TruckMarket has the right solution for you. Start with a free account or upgrade
+            RoadName has the right solution for you. Start with a free account or upgrade
             to Premium or Professional for advanced features.
           </p>
           <div className="cta-buttons">

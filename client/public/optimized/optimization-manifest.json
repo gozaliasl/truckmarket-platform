@@ -1,0 +1,23 @@
+{
+  "generated": "2025-10-08T21:21:41.075Z",
+  "totalFiles": 1,
+  "originalSize": 450,
+  "compressedSize": 151,
+  "savings": "66.4",
+  "results": [
+    {
+      "format": "gzip",
+      "path": "/Users/gozalig1/Documents/truckplatfourm/client/public/optimized/index.html.gz",
+      "originalSize": 450,
+      "compressedSize": 275,
+      "savings": "38.9"
+    },
+    {
+      "format": "brotli",
+      "path": "/Users/gozalig1/Documents/truckplatfourm/client/public/optimized/index.html.br",
+      "originalSize": 450,
+      "compressedSize": 151,
+      "savings": "66.4"
+    }
+  ]
+}

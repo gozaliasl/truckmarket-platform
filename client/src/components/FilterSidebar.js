@@ -17,7 +17,9 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
 
   const popularMakes = [
     'Mercedes-Benz', 'MAN', 'Scania', 'Volvo', 'DAF', 'Renault',
-    'Iveco', 'Freightliner', 'Kenworth', 'Peterbilt'
+    'Iveco', 'Freightliner', 'Kenworth', 'Peterbilt', 'BMW', 'Audi',
+    'Volkswagen', 'Toyota', 'Honda', 'Ford', 'Nissan', 'Mazda',
+    'Hyundai', 'Tesla', 'Porsche', 'Peugeot', 'Kia'
   ];
 
   const yearOptions = [];
@@ -26,6 +28,25 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
     yearOptions.push(year);
   }
 
+  const colors = [
+    'Black', 'White', 'Silver', 'Gray', 'Blue', 'Red', 'Green',
+    'Yellow', 'Orange', 'Brown', 'Gold', 'Purple', 'Pink'
+  ];
+
+  const fuelTypes = [
+    'Petrol', 'Diesel', 'Electric', 'Hybrid', 'Plug-in Hybrid',
+    'CNG', 'LPG', 'Hydrogen'
+  ];
+
+  const transmissionTypes = [
+    'Manual', 'Automatic', 'Semi-Automatic', 'CVT'
+  ];
+
+  const bodyTypes = [
+    'Sedan', 'SUV', 'Hatchback', 'Station Wagon', 'Coupe',
+    'Convertible', 'Pickup', 'Van', 'Truck', 'Bus'
+  ];
+
   const handleChange = (field, value) => {
     onFilterChange({ ...filters, [field]: value });
   };
@@ -33,7 +54,7 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
   return (
     <div className="filter-sidebar">
       <div className="sidebar-header">
-        <h2>🔍 Find Your Vehicle</h2>
+        <h2>🔍 Filter Results</h2>
         {selectedCategory && (
           <button
             className="reset-category-btn"
@@ -44,30 +65,6 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
           </button>
         )}
       </div>
-
-      {/* Category Selection */}
-      {!selectedCategory && (
-        <div className="filter-section categories-section">
-          <h3>Vehicle Categories</h3>
-          <div className="category-list">
-            {vehicleCategories.map(cat => (
-              <button
-                key={cat.id}
-                className="category-item"
-                onClick={() => onCategoryChange(cat.id)}
-              >
-                <div className="category-icon-image">
-                  <img src={cat.image} alt={cat.name} />
-                </div>
-                <div className="category-info">
-                  <span className="category-name">{cat.name}</span>
-                  <span className="category-count">{cat.count} ads</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Filters - Show when category selected */}
       {selectedCategory && (
@@ -136,19 +133,101 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
             </div>
           </div>
 
-          {/* Mileage */}
+          {/* Mileage Range */}
           <div className="filter-section">
             <label className="filter-label">
               <span className="label-icon">🛣️</span>
               Mileage (km)
             </label>
-            <input
-              type="number"
-              className="filter-input"
-              placeholder="Max mileage..."
-              value={filters.mileageTo}
-              onChange={(e) => handleChange('mileageTo', e.target.value)}
-            />
+            <div className="range-inputs">
+              <input
+                type="number"
+                className="filter-input-small"
+                placeholder="From"
+                value={filters.mileageFrom}
+                onChange={(e) => handleChange('mileageFrom', e.target.value)}
+              />
+              <span className="range-separator">—</span>
+              <input
+                type="number"
+                className="filter-input-small"
+                placeholder="To"
+                value={filters.mileageTo}
+                onChange={(e) => handleChange('mileageTo', e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Color Filter */}
+          <div className="filter-section">
+            <label className="filter-label">
+              <span className="label-icon">🎨</span>
+              Color
+            </label>
+            <select
+              className="filter-select"
+              value={filters.color}
+              onChange={(e) => handleChange('color', e.target.value)}
+            >
+              <option value="">All Colors</option>
+              {colors.map(color => (
+                <option key={color} value={color}>{color}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Fuel Type Filter */}
+          <div className="filter-section">
+            <label className="filter-label">
+              <span className="label-icon">⛽</span>
+              Fuel Type
+            </label>
+            <select
+              className="filter-select"
+              value={filters.fuelType}
+              onChange={(e) => handleChange('fuelType', e.target.value)}
+            >
+              <option value="">All Fuel Types</option>
+              {fuelTypes.map(fuel => (
+                <option key={fuel} value={fuel}>{fuel}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Transmission Filter */}
+          <div className="filter-section">
+            <label className="filter-label">
+              <span className="label-icon">⚙️</span>
+              Transmission
+            </label>
+            <select
+              className="filter-select"
+              value={filters.transmission}
+              onChange={(e) => handleChange('transmission', e.target.value)}
+            >
+              <option value="">All Transmissions</option>
+              {transmissionTypes.map(transmission => (
+                <option key={transmission} value={transmission}>{transmission}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Body Type Filter */}
+          <div className="filter-section">
+            <label className="filter-label">
+              <span className="label-icon">🚗</span>
+              Body Type
+            </label>
+            <select
+              className="filter-select"
+              value={filters.bodyType}
+              onChange={(e) => handleChange('bodyType', e.target.value)}
+            >
+              <option value="">All Body Types</option>
+              {bodyTypes.map(bodyType => (
+                <option key={bodyType} value={bodyType}>{bodyType}</option>
+              ))}
+            </select>
           </div>
 
           {/* Price Type */}
@@ -225,7 +304,9 @@ function FilterSidebar({ filters, onFilterChange, selectedCategory, onCategoryCh
               className="clear-filters-btn"
               onClick={() => onFilterChange({
                 make: '', model: '', yearFrom: '', yearTo: '',
-                mileageTo: '', priceType: 'gross', priceTo: '', location: ''
+                mileageFrom: '', mileageTo: '', color: '', fuelType: '',
+                transmission: '', bodyType: '', priceType: 'gross', 
+                priceTo: '', location: ''
               })}
             >
               ✕ Clear All Filters

@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Bun venit la PiațaVehicule",
+    "search": "Căutare",
+    "login": "Autentificare",
+    "register": "Înregistrare",
+    "about": "Despre",
+    "contact": "Contact",
+    "profile": "Profil",
+    "dashboard": "Panou de control",
+    "logout": "Deconectare",
+    "loading": "Se încarcă...",
+    "noResults": "Nu s-au găsit rezultate",
+    "viewAll": "Vezi tot",
+    "learnMore": "Află mai multe",
+    "getStarted": "Începe",
+    "browse": "Navighează",
+    "more": "Mai mult"
+  },
+  "header": {
+    "home": "Acasă",
+    "trucks": "Camioane",
+    "aboutUs": "Despre noi",
+    "contact": "Contact",
+    "addListing": "Adaugă anunț",
+    "myListings": "Anunțurile mele"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Alegeți tipul de vehicul",
+      "cars": "Mașini",
+      "carsDesc": "Mașini second-hand și noi",
+      "carsCount": "1,2M+ anunțuri",
+      "motorcycles": "Motociclete",
+      "motorcyclesDesc": "Motociclete și scutere",
+      "motorcyclesCount": "250K+ anunțuri",
+      "ebikes": "Biciclete electrice",
+      "ebikesDesc": "Biciclete electrice",
+      "ebikesCount": "80K+ anunțuri",
+      "caravans": "Caravane",
+      "caravansDesc": "Autorulote",
+      "caravansCount": "150K+ anunțuri"
+    },
+    "commercialVehicles": {
+      "title": "Găsiți vehiculul dumneavoastră comercial",
+      "subtitle": "Navigați pe categorii - Click pentru a explora"
+    },
+    "popularCarBrands": {
+      "title": "Mărci populare de mașini",
+      "subtitle": "Găsiți mașina visurilor dumneavoastră de la cei mai buni producători din lume",
+      "moreBrands": "Mai multe mărci"
+    },
+    "hero": {
+      "tagline": "Cumpărați, vindeți, finanțați sau închiriați un vehicul?",
+      "taglineSuffix": "Sau căutați unul nou-nouț? PiațaVehicule!",
+      "description": "Descoperiți tot ce ține de vehicule pe PiațaVehicule și obțineți cu ușurință o imagine de ansamblu clară a întregii piețe auto. Peste 1,4 milioane de vehicule vă așteaptă în fiecare zi.",
+      "searchPlaceholder": "Căutați după marcă sau model (ex. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Anunțuri active",
+      "sellers": "Vânzători verificați",
+      "countries": "Țări"
+    },
+    "popularBrands": "Mărci populare",
+    "marketplace": {
+      "title": "PiațaVehicule – Piața dumneavoastră completă de vehicule",
+      "buy": {
+        "title": "Căutați să cumpărați un vehicul?",
+        "description": "Explorați gama noastră largă de oferte, comparați-le și contactați vânzătorii direct – fie dealeri profesioniști, fie vânzători privați. Găsiți mașini, vehicule comerciale, motociclete, biciclete electrice și caravane cu sigilii de calitate și garanții."
+      },
+      "sell": {
+        "title": "Căutați să vindeți vehiculul dumneavoastră?",
+        "description": "Vindeți vehiculul dumneavoastră aici gratuit – rapid și convenabil. Ajungeți la milioane de potențiali cumpărători la cel mai bun preț posibil. Creați anunțul în câteva minute și începeți să primiți oferte astăzi."
+      },
+      "finance": {
+        "title": "Opțiuni de finanțare și leasing",
+        "description": "Fie că cumpărați sau închiriați, găsiți ceea ce căutați. Descoperiți oferte de finanțare potrivite și oferte de leasing de la dealeri din apropierea dumneavoastră. Comparați ratele lunare și obțineți cea mai bună ofertă pentru bugetul dumneavoastră."
+      },
+      "tip": "Sfat:",
+      "tipDescription": "Cu un cont de client, veți fi mereu la curent. Salvați căutările, accesați vehiculele salvate de pe toate dispozitivele dumneavoastră și primiți cele mai recente oferte care se potrivesc preferințelor dumneavoastră."
+    },
+    "aiFeatures": {
+      "title": "Funcții inteligente alimentate de AI",
+      "subtitle": "Experimentați viitorul cumpărăturilor de vehicule cu asistentul nostru inteligent AI",
+      "chatbot": {
+        "title": "Asistent chatbot AI",
+        "description": "Discutați cu AI-ul nostru pentru a găsi camionul perfect. Întrebați în limbaj natural!"
+      },
+      "smartSearch": {
+        "title": "Căutare inteligentă",
+        "description": "Căutați folosind limbaj natural precum \"Mercedes Euro 6 kilometraj redus\""
+      },
+      "priceEstimation": {
+        "title": "Estimare preț AI",
+        "description": "Obțineți analiză instantanee a prețului alimentată de AI și valori corecte de piață"
+      },
+      "marketInsights": {
+        "title": "Perspective de piață",
+        "description": "Vizualizați tendințele pieței în timp real și analize alimentate de AI"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Cât de mulțumit sunteți de pagina de start?",
+      "veryDissatisfied": "Foarte nemulțumit",
+      "dissatisfied": "Nemulțumit",
+      "neutral": "Neutru",
+      "satisfied": "Mulțumit",
+      "verySatisfied": "Foarte mulțumit",
+      "thankYou": "Vă mulțumim pentru feedback! Opinia dumneavoastră ne ajută să ne îmbunătățim."
+    },
+    "languageSelect": "Selectați limba:",
+    "followUs": "Urmăriți-ne",
+    "company": {
+      "title": "Companie",
+      "aboutUs": "Despre noi",
+      "newsroom": "Sala de presă",
+      "careers": "Cariere",
+      "sustainability": "Sustenabilitate",
+      "advertising": "Publicitate",
+      "contact": "Contact",
+      "accessibility": "Declarație de accesibilitate"
+    },
+    "legal": {
+      "title": "Legal",
+      "imprint": "Informații legale",
+      "terms": "Termeni și condiții generale",
+      "privacy": "Politica de confidențialitate",
+      "privacySettings": "Setări de confidențialitate",
+      "security": "Raportați vulnerabilitate de securitate"
+    },
+    "dealer": {
+      "title": "Dealer",
+      "login": "Autentificare",
+      "register": "Înregistrare",
+      "ourOffer": "Oferta noastră",
+      "terms": "Termeni și condiții"
+    },
+    "popular": {
+      "title": "Popular",
+      "ios": "PiațaVehicule iOS",
+      "android": "PiațaVehicule Android",
+      "sitemap": "Hartă site"
+    },
+    "copyright": "Toate drepturile rezervate."
+  }
+}

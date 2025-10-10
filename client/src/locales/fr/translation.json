@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Bienvenue sur MarchéVéhicules",
+    "search": "Rechercher",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "about": "À propos",
+    "contact": "Contact",
+    "profile": "Profil",
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion",
+    "loading": "Chargement...",
+    "noResults": "Aucun résultat trouvé",
+    "viewAll": "Tout voir",
+    "learnMore": "En savoir plus",
+    "getStarted": "Commencer",
+    "browse": "Parcourir",
+    "more": "Plus"
+  },
+  "header": {
+    "home": "Accueil",
+    "trucks": "Camions",
+    "aboutUs": "À propos",
+    "contact": "Contact",
+    "addListing": "Ajouter une annonce",
+    "myListings": "Mes annonces"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Choisissez votre type de véhicule",
+      "cars": "Voitures",
+      "carsDesc": "Voitures d'occasion et neuves",
+      "carsCount": "1,2M+ annonces",
+      "motorcycles": "Motos",
+      "motorcyclesDesc": "Motos et Scooters",
+      "motorcyclesCount": "250K+ annonces",
+      "ebikes": "Vélos électriques",
+      "ebikesDesc": "Vélos électriques",
+      "ebikesCount": "80K+ annonces",
+      "caravans": "Caravanes",
+      "caravansDesc": "Camping-cars",
+      "caravansCount": "150K+ annonces"
+    },
+    "commercialVehicles": {
+      "title": "Trouvez votre véhicule utilitaire",
+      "subtitle": "Parcourir par catégorie - Cliquez pour explorer"
+    },
+    "popularCarBrands": {
+      "title": "Marques de voitures populaires",
+      "subtitle": "Trouvez la voiture de vos rêves parmi les meilleurs constructeurs mondiaux",
+      "moreBrands": "Plus de marques"
+    },
+    "hero": {
+      "tagline": "Acheter, vendre, financer ou louer un véhicule?",
+      "taglineSuffix": "Ou cherchez-vous un véhicule neuf? MarchéVéhicules!",
+      "description": "Découvrez tout ce qui concerne les véhicules sur MarchéVéhicules et obtenez facilement une vue claire de l'ensemble du marché automobile. Plus de 1,4 million de véhicules vous attendent chaque jour.",
+      "searchPlaceholder": "Rechercher par marque ou modèle (ex. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Annonces actives",
+      "sellers": "Vendeurs vérifiés",
+      "countries": "Pays"
+    },
+    "popularBrands": "Marques populaires",
+    "marketplace": {
+      "title": "MarchéVéhicules – Votre marché complet de véhicules",
+      "buy": {
+        "title": "Vous cherchez à acheter un véhicule?",
+        "description": "Explorez notre large gamme d'offres, comparez-les et contactez directement les vendeurs, qu'il s'agisse de concessionnaires professionnels ou de vendeurs privés. Trouvez des voitures, des véhicules utilitaires, des motos, des vélos électriques et des caravanes avec des labels de qualité et des garanties."
+      },
+      "sell": {
+        "title": "Vous cherchez à vendre votre véhicule?",
+        "description": "Vendez votre véhicule ici gratuitement, rapidement et facilement. Touchez des millions d'acheteurs potentiels au meilleur prix possible. Créez votre annonce en quelques minutes et commencez à recevoir des offres dès aujourd'hui."
+      },
+      "finance": {
+        "title": "Options de financement et de leasing",
+        "description": "Que ce soit pour un achat ou un leasing, trouvez ce que vous cherchez. Découvrez des offres de financement adaptées et des offres de leasing auprès de concessionnaires près de chez vous. Comparez les mensualités et obtenez la meilleure offre pour votre budget."
+      },
+      "tip": "Conseil:",
+      "tipDescription": "Avec un compte client, vous restez toujours à jour. Sauvegardez vos recherches, accédez à vos véhicules sauvegardés depuis tous vos appareils et recevez les dernières offres correspondant à vos préférences."
+    },
+    "aiFeatures": {
+      "title": "Fonctionnalités intelligentes alimentées par l'IA",
+      "subtitle": "Découvrez l'avenir de l'achat de véhicules avec notre assistant intelligent IA",
+      "chatbot": {
+        "title": "Assistant chatbot IA",
+        "description": "Discutez avec notre IA pour trouver le camion parfait. Posez vos questions en langage naturel!"
+      },
+      "smartSearch": {
+        "title": "Recherche intelligente",
+        "description": "Recherchez en langage naturel comme \"Mercedes Euro 6 faible kilométrage\""
+      },
+      "priceEstimation": {
+        "title": "Estimation de prix par IA",
+        "description": "Obtenez une analyse de prix instantanée par IA et des valeurs marchandes équitables"
+      },
+      "marketInsights": {
+        "title": "Aperçus du marché",
+        "description": "Consultez les tendances du marché en temps réel et les analyses alimentées par l'IA"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Dans quelle mesure êtes-vous satisfait de la page d'accueil?",
+      "veryDissatisfied": "Très insatisfait",
+      "dissatisfied": "Insatisfait",
+      "neutral": "Neutre",
+      "satisfied": "Satisfait",
+      "verySatisfied": "Très satisfait",
+      "thankYou": "Merci pour vos commentaires! Votre avis nous aide à nous améliorer."
+    },
+    "languageSelect": "Sélectionner la langue:",
+    "followUs": "Suivez-nous",
+    "company": {
+      "title": "Entreprise",
+      "aboutUs": "À propos de nous",
+      "newsroom": "Salle de presse",
+      "careers": "Carrières",
+      "sustainability": "Durabilité",
+      "advertising": "Publicité",
+      "contact": "Contact",
+      "accessibility": "Déclaration d'accessibilité"
+    },
+    "legal": {
+      "title": "Légal",
+      "imprint": "Mentions légales",
+      "terms": "Conditions générales",
+      "privacy": "Politique de confidentialité",
+      "privacySettings": "Paramètres de confidentialité",
+      "security": "Signaler une vulnérabilité de sécurité"
+    },
+    "dealer": {
+      "title": "Concessionnaire",
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "ourOffer": "Notre offre",
+      "terms": "Conditions générales"
+    },
+    "popular": {
+      "title": "Populaire",
+      "ios": "MarchéVéhicules iOS",
+      "android": "MarchéVéhicules Android",
+      "sitemap": "Plan du site"
+    },
+    "copyright": "Tous droits réservés."
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "common": {
+    "welcome": "Witamy w RynekPojazdów",
+    "search": "Szukaj",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "profile": "Profil",
+    "dashboard": "Panel",
+    "logout": "Wyloguj się",
+    "loading": "Ładowanie...",
+    "noResults": "Nie znaleziono wyników",
+    "viewAll": "Zobacz wszystko",
+    "learnMore": "Dowiedz się więcej",
+    "getStarted": "Rozpocznij",
+    "browse": "Przeglądaj",
+    "more": "Więcej"
+  },
+  "header": {
+    "home": "Strona główna",
+    "trucks": "Ciężarówki",
+    "aboutUs": "O nas",
+    "contact": "Kontakt",
+    "addListing": "Dodaj ogłoszenie",
+    "myListings": "Moje ogłoszenia"
+  },
+  "home": {
+    "vehicleTypeSelector": {
+      "title": "Wybierz typ pojazdu",
+      "cars": "Samochody",
+      "carsDesc": "Samochody używane i nowe",
+      "carsCount": "1,2M+ ogłoszeń",
+      "motorcycles": "Motocykle",
+      "motorcyclesDesc": "Motocykle i skutery",
+      "motorcyclesCount": "250K+ ogłoszeń",
+      "ebikes": "Rowery elektryczne",
+      "ebikesDesc": "Rowery elektryczne",
+      "ebikesCount": "80K+ ogłoszeń",
+      "caravans": "Przyczepy kempingowe",
+      "caravansDesc": "Kampery",
+      "caravansCount": "150K+ ogłoszeń"
+    },
+    "commercialVehicles": {
+      "title": "Znajdź swój pojazd użytkowy",
+      "subtitle": "Przeglądaj według kategorii - Kliknij, aby eksplorować"
+    },
+    "popularCarBrands": {
+      "title": "Popularne marki samochodów",
+      "subtitle": "Znajdź swój wymarzony samochód od czołowych producentów na całym świecie",
+      "moreBrands": "Więcej marek"
+    },
+    "hero": {
+      "tagline": "Kupujesz, sprzedajesz, finansujesz lub leasingujesz pojazd?",
+      "taglineSuffix": "A może szukasz zupełnie nowego? RynekPojazdów!",
+      "description": "Odkryj wszystko związane z pojazdami w RynekPojazdów i łatwo uzyskaj jasny przegląd całego rynku motoryzacyjnego. Ponad 1,4 miliona pojazdów czeka na Ciebie każdego dnia.",
+      "searchPlaceholder": "Szukaj według marki lub modelu (np. DAF, Volvo, FH 540)..."
+    },
+    "stats": {
+      "listings": "Aktywne ogłoszenia",
+      "sellers": "Zweryfikowani sprzedawcy",
+      "countries": "Kraje"
+    },
+    "popularBrands": "Popularne marki",
+    "marketplace": {
+      "title": "RynekPojazdów – Twój kompletny rynek pojazdów",
+      "buy": {
+        "title": "Szukasz pojazdu do kupienia?",
+        "description": "Przeglądaj naszą szeroką gamę ofert, porównuj je i kontaktuj się bezpośrednio ze sprzedawcami – zarówno profesjonalnymi dealerami, jak i prywatnymi sprzedawcami. Znajdź samochody, pojazdy użytkowe, motocykle, rowery elektryczne i przyczepy kempingowe z pieczęciami jakości i gwarancjami."
+      },
+      "sell": {
+        "title": "Chcesz sprzedać swój pojazd?",
+        "description": "Sprzedaj swój pojazd tutaj bezpłatnie – szybko i wygodnie. Dotrzyj do milionów potencjalnych kupujących po najlepszej możliwej cenie. Utwórz swoje ogłoszenie w kilka minut i zacznij otrzymywać oferty już dziś."
+      },
+      "finance": {
+        "title": "Opcje finansowania i leasingu",
+        "description": "Czy kupujesz, czy leasingujesz, znajdź to, czego szukasz. Odkryj odpowiednie oferty finansowania i leasingu od dealerów w Twojej okolicy. Porównaj miesięczne raty i uzyskaj najlepszą ofertę dla swojego budżetu."
+      },
+      "tip": "Wskazówka:",
+      "tipDescription": "Dzięki kontu klienta zawsze będziesz na bieżąco. Zapisuj swoje wyszukiwania, uzyskuj dostęp do zapisanych pojazdów ze wszystkich swoich urządzeń i otrzymuj najnowsze oferty odpowiadające Twoim preferencjom."
+    },
+    "aiFeatures": {
+      "title": "Inteligentne funkcje oparte na AI",
+      "subtitle": "Doświadcz przyszłości zakupów pojazdów z naszym inteligentnym asystentem AI",
+      "chatbot": {
+        "title": "Asystent chatbot AI",
+        "description": "Rozmawiaj z naszym AI, aby znaleźć idealną ciężarówkę. Pytaj prostym językiem!"
+      },
+      "smartSearch": {
+        "title": "Inteligentne wyszukiwanie",
+        "description": "Wyszukuj używając języka naturalnego jak \"Mercedes Euro 6 mały przebieg\""
+      },
+      "priceEstimation": {
+        "title": "Szacowanie cen AI",
+        "description": "Uzyskaj natychmiastową analizę cen opartą na AI i uczciwe wartości rynkowe"
+      },
+      "marketInsights": {
+        "title": "Wgląd w rynek",
+        "description": "Zobacz trendy rynkowe w czasie rzeczywistym i analizy oparte na AI"
+      }
+    }
+  },
+  "footer": {
+    "satisfaction": {
+      "question": "Jak bardzo jesteś zadowolony ze strony głównej?",
+      "veryDissatisfied": "Bardzo niezadowolony",
+      "dissatisfied": "Niezadowolony",
+      "neutral": "Neutralny",
+      "satisfied": "Zadowolony",
+      "verySatisfied": "Bardzo zadowolony",
+      "thankYou": "Dziękujemy za opinię! Twoja opinia pomaga nam się poprawiać."
+    },
+    "languageSelect": "Wybierz język:",
+    "followUs": "Obserwuj nas",
+    "company": {
+      "title": "Firma",
+      "aboutUs": "O nas",
+      "newsroom": "Newsroom",
+      "careers": "Kariera",
+      "sustainability": "Zrównoważony rozwój",
+      "advertising": "Reklama",
+      "contact": "Kontakt",
+      "accessibility": "Oświadczenie o dostępności"
+    },
+    "legal": {
+      "title": "Prawne",
+      "imprint": "Stopka wydawnicza",
+      "terms": "Ogólne warunki",
+      "privacy": "Polityka prywatności",
+      "privacySettings": "Ustawienia prywatności",
+      "security": "Zgłoś lukę bezpieczeństwa"
+    },
+    "dealer": {
+      "title": "Dealer",
+      "login": "Zaloguj się",
+      "register": "Zarejestruj się",
+      "ourOffer": "Nasza oferta",
+      "terms": "Warunki"
+    },
+    "popular": {
+      "title": "Popularne",
+      "ios": "RynekPojazdów iOS",
+      "android": "RynekPojazdów Android",
+      "sitemap": "Mapa strony"
+    },
+    "copyright": "Wszelkie prawa zastrzeżone."
+  }
+}
